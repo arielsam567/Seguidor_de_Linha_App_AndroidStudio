@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Seguidor de Linha</string>
+    <string name="tab_text_1">Seguidor Junior</string>
+    <string name="tab_text_2">Seguidor Pro 8S</string>
+    <string name="tab_text_3">Seguidor Pro 6S</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
