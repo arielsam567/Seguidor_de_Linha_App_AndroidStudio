@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.seguidor_de_linha.R;
@@ -21,6 +22,7 @@ public class PlaceholderFragmentTwo extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private PageViewModel pageViewModel;
+    private View root;
 
     public static PlaceholderFragmentTwo newInstance(int index) {
         PlaceholderFragmentTwo fragment = new PlaceholderFragmentTwo();
@@ -45,9 +47,36 @@ public class PlaceholderFragmentTwo extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.tela_pro8, container, false);
-
-
+        root = inflater.inflate(R.layout.tela_pro8, container, false);
+        reference_elements();
+        setText_elements();
         return root;
+    }
+
+    Button btnConnect, btnReconnect, btnUp,btnRight, btnDonw, btnLeft, btnStart, btnStop,btnReadSensors;
+
+
+    public void reference_elements(){
+        btnConnect = root.findViewById(R.id.buttonconnect);
+        btnReconnect =root. findViewById(R.id.buttonreconnect);
+        btnUp = root.findViewById(R.id.up);
+        btnRight = root.findViewById(R.id.right);
+        btnDonw = root.findViewById(R.id.donw);
+        btnLeft = root.findViewById(R.id.left);
+        btnStart = root.findViewById(R.id.start);
+        btnStop = root.findViewById(R.id.stop);
+        btnReadSensors = root.findViewById(R.id.read);
+    }
+
+    public void setText_elements(){
+        btnConnect.setText("Conectar");
+        btnReconnect.setText("⟳");
+        btnUp.setText("↑");
+        btnRight.setText("→");
+        btnDonw.setText("↓");
+        btnLeft.setText("←");
+        btnStart.setText("►");
+        btnStop.setText("\uD83D\uDEAB");
+        btnReadSensors.setText("\uD83D\uDD0D");
     }
 }
