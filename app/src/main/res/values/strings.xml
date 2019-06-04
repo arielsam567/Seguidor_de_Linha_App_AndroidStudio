@@ -3,7 +3,23 @@
     <string name="tab_text_1">Seguidor Junior</string>
     <string name="tab_text_2">Seguidor Pro 8S</string>
     <string name="tab_text_3">Seguidor Pro 6S</string>
+    <string name="precisa_ativar_bluetooth">Vocé precisa ativar o bluetooth</string>
+    <string name="msg_searching_devices">Buscando por dispositivos</string>
+    <string name="tv_bluetooth_encontrados">Bluetooth encontrados</string>
+    <string name="title_activity_paired_devices">Dispositivos pareados</string>
+    <string name="state">Status</string>
+    <string name="desconectado">Desconectado</string>
+    <string name="conectar">Conectar</string>
+    <string name="dispostivoNaoPossuiBluetooth">Dispostivo nao possui Bluetooth</string>
+    <string name="nenhumDispositivoSelecionado">Nenhum dispositivo Selecionado</string>
+    <string name="cancel">Cancelar</string>
+    <string name="conectando">Conectando...</string>
+    <string name="conectado">Conectado</string>
+    <string name="falhaNaConexao">Falha ao conectar</string>
+    <string name="numerosMaximosDeLinhasUltrapassado">Numeros maximos de linhas ultrapassado!!!!</string>
+    <string name="ativeBluetooth">Ative o bluetooth</string>
 
+    <string name="desconectar">Desconectar</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
