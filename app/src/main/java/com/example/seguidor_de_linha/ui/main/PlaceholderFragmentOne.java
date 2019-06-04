@@ -102,7 +102,7 @@ public class PlaceholderFragmentOne extends Fragment {
         btnStop = root.findViewById(R.id.stop);
         btnReadSensors = root.findViewById(R.id.read);
         txtStatus = root.findViewById(R.id.txtStatus);
-        trocaTela = root.findViewById(R.id.trocatroca);
+        trocaTela = root.findViewById(R.id.button3);
     }
 
     public void setText_elements(){
