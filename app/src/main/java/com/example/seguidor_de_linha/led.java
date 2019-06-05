@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -58,6 +59,32 @@ public class led extends AppCompatActivity {
         btnStop.setText("\uD83D\uDEAB         Parar");
         btnReadSensors.setText("Ler sensores");
     }
+
+    @SuppressLint("ClickableViewAccessibility")
+    public void setValueButton(){
+        btnUp.setOnTouchListener(new BotaoListener("8"));
+        btnRight.setOnTouchListener(new BotaoListener("6"));
+        btnDonw.setOnTouchListener(new BotaoListener("2"));
+        btnLeft.setOnTouchListener(new BotaoListener("4"));
+        btnStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
+                sendSignal("c");
+            }
+        });
+        btnStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
+                sendSignal("b");
+            }
+        });
+        btnReadSensors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
+                sendSignal("a");
+            }
+        });
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -68,44 +95,13 @@ public class led extends AppCompatActivity {
         setContentView(R.layout.activity_led);
         reference_elements();
         setText_elements();
+        setValueButton();
 
         Intent newint = getIntent();
         address = newint.getStringExtra(device.EXTRA_ADDRESS);
         new ConnectBT().execute();
 
-        btnUp.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (isBtConnected) {
-                    sendSignal("8");
-                }
-                return false;
-            }
-        });
-        btnRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendSignal("6");
-            }
-        });
-        btnDonw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendSignal("2");
-            }
-        });
-        btnLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendSignal("4");
-            }
-        });
-        btnStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendSignal("1");
-            }
-        });
+
         btnReconnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,6 +109,7 @@ public class led extends AppCompatActivity {
             }
         });
         btnConnect.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 if (!isBtConnected) {
@@ -126,7 +123,40 @@ public class led extends AppCompatActivity {
             }
         });
 
+
+        btnStart.setOnTouchListener(new BotaoListener("8"));
+
     }
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //Listner Botoao
+    public class BotaoListener implements View.OnTouchListener {
+        private String mensagem;
+        BotaoListener(String mensagem) {
+            super();
+            this.mensagem = mensagem;
+        }
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (isBtConnected) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Message msg = Message.obtain();
+                    msg.obj = mensagem;
+                    sendSignal(mensagem);
+                }
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    Message msg = Message.obtain();
+                    msg.obj = "0";
+                    sendSignal("0");
+                }
+            }
+
+            return false;
+        }
+
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////
 
 
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -140,7 +170,6 @@ public class led extends AppCompatActivity {
             }
         }
     }
-
     private void Disconnect() {
         if (btSocket != null) {
             try {
@@ -150,11 +179,9 @@ public class led extends AppCompatActivity {
             }
         }
     }
-
     private void msg(String s) {
         Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
     }
-
     @SuppressLint("StaticFieldLeak")
     private class ConnectBT extends AsyncTask<Void, Void, Void> {
         private boolean ConnectSuccess = true;
