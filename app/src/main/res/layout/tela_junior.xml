@@ -157,6 +157,7 @@
 
         android:background="@drawable/button_reconnect"
 
+        android:onClick="reconect"
         android:shadowColor="#18CC24"
         android:shadowDx="0"
         android:shadowDy="0"
@@ -174,12 +175,13 @@
         android:layout_height="30dp"
         android:layout_marginStart="137dp"
         android:background="@drawable/button_connect"
+        android:onClick="connectButtonPressed"
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="5"
         android:text="Conectar"
-        android:textColor="#18CC24"
 
+        android:textColor="#18CC24"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/buttonreconnect" />
@@ -201,7 +203,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:onClick="voltar"
         android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

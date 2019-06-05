@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/trocatroca"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,8 +10,9 @@
         android:id="@+id/read"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/button_read"
         android:shadowColor="#1261C9"
         android:shadowDx="0"
@@ -19,16 +21,16 @@
         android:text="Button"
         android:textColor="#FFFFFF"
         android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/stop"
-        app:layout_constraintTop_toBottomOf="@+id/stop" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/stop"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/button_stop"
         android:shadowColor="#FF0F0F"
         android:shadowDx="0"
@@ -38,16 +40,16 @@
         android:textColor="#FFFFFF"
         android:textSize="23sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/start"
-        app:layout_constraintTop_toBottomOf="@+id/start" />
+        app:layout_constraintStart_toEndOf="@+id/start"
+        app:layout_constraintTop_toTopOf="@+id/start" />
 
     <Button
         android:id="@+id/start"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="550dp"
-        android:layout_marginTop="75dp"
+        android:layout_marginStart="10dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/button_start"
         android:shadowColor="#18CC24"
         android:shadowDx="0"
@@ -56,9 +58,9 @@
         android:text="iniciar"
         android:textColor="#FFFFFF"
         android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/read"
+        app:layout_constraintEnd_toStartOf="@+id/stop"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/up"
@@ -66,7 +68,7 @@
 
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="232dp"
         android:background="@drawable/button_up"
         android:shadowColor="#B5B5B5"
         android:shadowDx="0"
@@ -78,7 +80,7 @@
 
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.107"
+        app:layout_constraintHorizontal_bias="0.219"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -151,7 +153,10 @@
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="140dp"
+
         android:background="@drawable/button_reconnect"
+
         android:onClick="reconect"
         android:shadowColor="#18CC24"
         android:shadowDx="0"
@@ -160,36 +165,36 @@
         android:text="⟳"
         android:textColor="#18CC24"
         android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonconnect"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonconnect"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="137dp"
         android:background="@drawable/button_connect"
         android:onClick="connectButtonPressed"
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="5"
-
         android:text="Conectar"
+
         android:textColor="#18CC24"
         android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/buttonreconnect" />
 
-    <Button
-        android:id="@+id/button3"
+    <TextView
+        android:id="@+id/txtStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Button"
-        app:layout_constraintStart_toStartOf="@+id/donw"
-        app:layout_constraintTop_toBottomOf="@+id/donw" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/start"
+        app:layout_constraintEnd_toEndOf="@+id/start" />
+
 
 </android.support.constraint.ConstraintLayout>
