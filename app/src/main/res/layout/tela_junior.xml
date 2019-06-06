@@ -69,6 +69,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="232dp"
+        android:layout_marginBottom="232dp"
         android:background="@drawable/button_up"
         android:shadowColor="#B5B5B5"
         android:shadowDx="0"
@@ -76,9 +77,10 @@
         android:shadowRadius="5"
         android:text="↑"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
 
+        android:textSize="30sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.219"
         app:layout_constraintStart_toStartOf="parent"
@@ -128,7 +130,6 @@
 
     <Button
         android:id="@+id/right"
-
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="5dp"
@@ -148,15 +149,12 @@
 
     <Button
         android:id="@+id/buttonreconnect"
-
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="140dp"
-
         android:background="@drawable/button_reconnect"
-
         android:onClick="reconect"
         android:shadowColor="#18CC24"
         android:shadowDx="0"
@@ -180,7 +178,6 @@
         android:shadowDy="0"
         android:shadowRadius="5"
         android:text="Conectar"
-
         android:textColor="#18CC24"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"
