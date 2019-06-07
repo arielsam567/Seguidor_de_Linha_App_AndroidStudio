@@ -55,7 +55,6 @@ public class PlaceholderFragmentTwo extends Fragment {
 
     Button btnConnect, btnReconnect, btnUp,btnRight, btnDonw, btnLeft, btnStart, btnStop,btnReadSensors;
 
-
     public void reference_elements(){
         btnConnect = root.findViewById(R.id.buttonconnect);
         btnReconnect =root. findViewById(R.id.buttonreconnect);

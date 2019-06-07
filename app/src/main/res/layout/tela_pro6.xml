@@ -1,35 +1,349 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="200dp">
+
+    <ScrollView
+        android:id="@+id/valores"
+        android:layout_width="390dp"
+        android:layout_height="170dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="90dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@+id/up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonconnect"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:id="@+id/parametros"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="390dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                ///
+
+                <LinearLayout
+                    android:layout_width="390dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/TextViewThre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thre"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <EditText
+                        android:id="@+id/txtThre"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:inputType="numberDecimal" />
+
+                    <TextView
+                        android:id="@+id/TextViewVmax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Vmax"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <EditText
+                        android:id="@+id/txtVmax"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:inputType="numberDecimal" />
+
+                    <TextView
+                        android:id="@+id/TextViewVmin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Vmin"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <EditText
+                        android:id="@+id/txtVmin"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:inputType="numberDecimal" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/TextViewKp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kp"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <EditText
+                        android:id="@+id/txtKp"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:inputType="numberDecimal" />
+
+                    <TextView
+                        android:id="@+id/TextViewKd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kd"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <EditText
+                        android:id="@+id/txtKd"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:inputType="numberDecimal" />
+
+                    <TextView
+                        android:id="@+id/TextViewTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Time"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <EditText
+                        android:id="@+id/txtTime"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:inputType="numberDecimal" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/TextViewT1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="T₁"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <EditText
+                        android:id="@+id/txtT1"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:inputType="numberDecimal" />
+
+                    <TextView
+                        android:id="@+id/TextViewT2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="T₂"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <EditText
+                        android:id="@+id/txtT2"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:inputType="numberDecimal" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/TextViewT3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="T₃"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <EditText
+                        android:id="@+id/txtT3"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:inputType="numberDecimal" />
+
+                    <TextView
+                        android:id="@+id/TextViewT4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="T₄"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <EditText
+                        android:id="@+id/txtT4"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:inputType="numberDecimal" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/TextViewT5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="T₅"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <EditText
+                        android:id="@+id/txtT5"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:inputType="numberDecimal" />
+
+                    <TextView
+                        android:id="@+id/TextViewT6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="T₆"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <EditText
+                        android:id="@+id/txtT6"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:inputType="numberDecimal" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/TextViewT7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="T₇"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <EditText
+                        android:id="@+id/txtT7"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:inputType="numberDecimal" />
+
+                    <TextView
+                        android:id="@+id/TextViewT8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="T₈"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <EditText
+                        android:id="@+id/txtT8"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:inputType="numberDecimal" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/TextViewT9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="T₉"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <EditText
+                        android:id="@+id/txtT9"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:inputType="numberDecimal" />
+
+                    <TextView
+                        android:id="@+id/TextViewT10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="T₁₀"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <EditText
+                        android:id="@+id/txtT10"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:inputType="numberDecimal" />
+                </LinearLayout>
+
+                //////////
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
     <Button
         android:id="@+id/read"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/button_read"
         android:shadowColor="#1261C9"
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="5"
-        android:text="Button"
+        android:text="ler"
         android:textColor="#FFFFFF"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/stop"
+        app:layout_constraintTop_toBottomOf="@+id/stop" />
 
     <Button
         android:id="@+id/stop"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/button_stop"
         android:shadowColor="#FF0F0F"
         android:shadowDx="0"
@@ -38,17 +352,16 @@
         android:text="parar"
         android:textColor="#FFFFFF"
         android:textSize="23sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/start"
-        app:layout_constraintTop_toTopOf="@+id/start" />
+        app:layout_constraintStart_toStartOf="@+id/start"
+        app:layout_constraintTop_toBottomOf="@+id/start" />
 
     <Button
         android:id="@+id/start"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
         android:background="@drawable/button_start"
         android:shadowColor="#18CC24"
         android:shadowDx="0"
@@ -57,17 +370,17 @@
         android:text="iniciar"
         android:textColor="#FFFFFF"
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/read"
-        app:layout_constraintEnd_toStartOf="@+id/stop"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.73"
+        app:layout_constraintStart_toEndOf="@+id/up"
+        app:layout_constraintTop_toTopOf="@+id/up" />
 
     <Button
         android:id="@+id/up"
-
-
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="232dp"
+        android:layout_marginStart="89dp"
+        android:layout_marginTop="450dp"
         android:background="@drawable/button_up"
         android:shadowColor="#B5B5B5"
         android:shadowDx="0"
@@ -75,22 +388,17 @@
         android:shadowRadius="5"
         android:text="↑"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
 
+        android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.219"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/donw"
-
-
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="5dp"
-
         android:layout_marginEnd="5dp"
         android:background="@drawable/button_donw"
         android:shadowColor="#A8A8A8"
@@ -99,7 +407,6 @@
         android:shadowRadius="5"
         android:text="↓"
         android:textColor="#FFFFFF"
-
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/right"
@@ -107,7 +414,6 @@
 
     <Button
         android:id="@+id/left"
-
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginEnd="5dp"
@@ -119,7 +425,6 @@
         android:shadowRadius="5"
         android:text="←"
         android:textColor="#FFFFFF"
-
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/donw"
@@ -127,7 +432,6 @@
 
     <Button
         android:id="@+id/right"
-
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="5dp"
@@ -139,7 +443,6 @@
         android:shadowRadius="5"
         android:text="→"
         android:textColor="#FFFFFF"
-
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/up"
@@ -147,15 +450,12 @@
 
     <Button
         android:id="@+id/buttonreconnect"
-
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="140dp"
-
         android:background="@drawable/button_reconnect"
-
         android:shadowColor="#18CC24"
         android:shadowDx="0"
         android:shadowDy="0"
@@ -179,8 +479,8 @@
         android:text="Conectar"
         android:textColor="#18CC24"
         android:textSize="10sp"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/buttonreconnect" />
+
 
 </android.support.constraint.ConstraintLayout>

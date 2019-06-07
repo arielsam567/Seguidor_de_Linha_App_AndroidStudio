@@ -19,7 +19,7 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.UUID;
 
-public class led extends AppCompatActivity {
+public class TesteTela extends AppCompatActivity {
 
 
     String address = null;
@@ -98,7 +98,7 @@ public class led extends AppCompatActivity {
         setValueButton();
 
         Intent newint = getIntent();
-        address = newint.getStringExtra(device.EXTRA_ADDRESS);
+        address = newint.getStringExtra(Device.EXTRA_ADDRESS);
         new ConnectBT().execute();
 
 
@@ -113,7 +113,7 @@ public class led extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!isBtConnected) {
-                    Intent intent = new Intent(led.this, device.class);
+                    Intent intent = new Intent(TesteTela.this, Device.class);
                     startActivity(intent);
                 } else if (isBtConnected) {
                     Disconnect();
@@ -188,7 +188,7 @@ public class led extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            progress = ProgressDialog.show(led.this, "Connecting...", "Please Wait!!!");
+            progress = ProgressDialog.show(TesteTela.this, "Connecting...", "Please Wait!!!");
         }
 
         @Override

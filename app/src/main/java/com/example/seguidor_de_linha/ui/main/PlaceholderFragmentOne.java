@@ -17,10 +17,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.seguidor_de_linha.MainActivity;
+import com.example.seguidor_de_linha.Device;
 import com.example.seguidor_de_linha.R;
-import com.example.seguidor_de_linha.device;
-import com.example.seguidor_de_linha.led;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -96,7 +94,7 @@ public class PlaceholderFragmentOne extends Fragment {
         View.OnClickListener parear = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), device.class);
+                Intent intent = new Intent(getContext(), Device.class);
                 startActivity(intent);
             }
         };

@@ -13,13 +13,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.seguidor_de_linha.ui.main.PlaceholderFragmentOne;
-import com.example.seguidor_de_linha.ui.main.SectionsPagerAdapter;
-
 import java.util.ArrayList;
 import java.util.Set;
 
-public class device extends AppCompatActivity {
+public class Device extends AppCompatActivity {
 
 
     Button btnPaired;
@@ -39,7 +36,7 @@ public class device extends AppCompatActivity {
 
         myBluetooth = BluetoothAdapter.getDefaultAdapter();
         if ( myBluetooth==null ) {
-            Toast.makeText(getApplicationContext(), "Bluetooth device not available", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Bluetooth Device not available", Toast.LENGTH_LONG).show();
             finish();
         } else if ( !myBluetooth.isEnabled() ) {
             Intent turnBTon = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
@@ -76,7 +73,7 @@ public class device extends AppCompatActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             String info = ((TextView) view).getText().toString();
             String address = info.substring(info.length()-17);
-            Intent i = new Intent(device.this, led.class);
+            Intent i = new Intent(Device.this, TesteTela.class);
             i.putExtra(EXTRA_ADDRESS, address);
             startActivity(i);
         }

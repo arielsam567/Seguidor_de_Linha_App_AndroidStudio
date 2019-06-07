@@ -15,8 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".device"></activity>
-        <activity android:name=".led" />
+        <activity android:name=".Device"></activity>
+        <activity android:name=".TesteTela" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
