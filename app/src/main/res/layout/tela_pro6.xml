@@ -8,7 +8,7 @@
     <ScrollView
         android:id="@+id/valores"
         android:layout_width="390dp"
-        android:layout_height="170dp"
+        android:layout_height="175dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_marginStart="8dp"
@@ -126,7 +126,7 @@
                         android:id="@+id/TextViewTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Time"
+                        android:text="Timer"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
 
                     <EditText
@@ -172,6 +172,21 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:inputType="numberDecimal" />
+
+                    <Button
+                        android:id="@+id/buttonAccess"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="30dp"
+                        android:background="@drawable/button_connect"
+                        android:shadowDx="0"
+                        android:shadowDy="0"
+                        android:shadowRadius="5"
+                        android:text="Acessar"
+                        android:textColor="#18CC24"
+                        android:textSize="10sp" />
+
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -208,6 +223,21 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:inputType="numberDecimal" />
+
+                    <Button
+                        android:id="@+id/buttonSave"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="30dp"
+                        android:background="@drawable/button_connect"
+                        android:shadowDx="0"
+                        android:shadowDy="0"
+                        android:shadowRadius="5"
+                        android:text="Salvar"
+                        android:textColor="#18CC24"
+                        android:textSize="10sp" />
+
+
                 </LinearLayout>
 
                 <LinearLayout
