@@ -21,9 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.seguidor_de_linha.Device;
-import com.example.seguidor_de_linha.MainActivity;
 import com.example.seguidor_de_linha.R;
-import com.example.seguidor_de_linha.TesteTela;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -31,7 +29,7 @@ import java.util.UUID;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class PlaceholderFragmentOne extends Fragment {
+public class TelaJunior extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
     private View root;
@@ -96,8 +94,8 @@ public class PlaceholderFragmentOne extends Fragment {
             }
         });
     }
-    public static PlaceholderFragmentOne newInstance(int index, String address) {
-        PlaceholderFragmentOne fragment = new PlaceholderFragmentOne();
+    public static TelaJunior newInstance(int index, String address) {
+        TelaJunior fragment = new TelaJunior();
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SECTION_NUMBER, index);
         bundle.putString(ADDRESS, address);
@@ -158,8 +156,6 @@ public class PlaceholderFragmentOne extends Fragment {
     }
 
 
-
-
     //Botao
     public class BotaoListener implements View.OnTouchListener {
     private String mensagem;
@@ -211,7 +207,6 @@ public class PlaceholderFragmentOne extends Fragment {
     private void msg (String s) {
         Toast.makeText(getContext(), s, Toast.LENGTH_LONG).show();
     }
-
     private class ConnectBT extends AsyncTask<String, Void, Void> {
         private boolean ConnectSuccess = true;
         @Override

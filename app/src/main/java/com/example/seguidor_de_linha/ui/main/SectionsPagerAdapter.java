@@ -32,13 +32,13 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         // retorna o Fragment de acordo com o número da página do ViewPager;
         switch (position){
             case 0:
-                return PlaceholderFragmentOne.newInstance(position +1, mAddress);
+                return TelaJunior.newInstance(position +1, mAddress);
             case 1:
-                return PlaceholderFragmentTwo.newInstance(position + 1);
+                return TelaPro8s.newInstance(position + 1);
             case 2:
-                return PlaceholderFragmentThree.newInstance(position + 1);
+                return TelaPro6s.newInstance(position + 1);
             default:
-                return PlaceholderFragmentOne.newInstance(position + 1, mAddress);
+                return TelaJunior.newInstance(position + 1, mAddress);
         }
     }
 

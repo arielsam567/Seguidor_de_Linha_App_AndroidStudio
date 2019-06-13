@@ -16,7 +16,7 @@ import com.example.seguidor_de_linha.R;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class PlaceholderFragmentThree extends Fragment {
+public class TelaPro6s extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -46,8 +46,8 @@ public class PlaceholderFragmentThree extends Fragment {
         btnReadSensors.setText("\uD83D\uDD0D");
     }
 
-    public static PlaceholderFragmentThree newInstance(int index) {
-        PlaceholderFragmentThree fragment = new PlaceholderFragmentThree();
+    public static TelaPro6s newInstance(int index) {
+        TelaPro6s fragment = new TelaPro6s();
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SECTION_NUMBER, index);
         fragment.setArguments(bundle);

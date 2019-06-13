@@ -1,31 +1,28 @@
 package com.example.seguidor_de_linha.ui.main;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.seguidor_de_linha.R;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class PlaceholderFragmentTwo extends Fragment {
+public class TelaPro8s extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private PageViewModel pageViewModel;
     private View root;
 
-    public static PlaceholderFragmentTwo newInstance(int index) {
-        PlaceholderFragmentTwo fragment = new PlaceholderFragmentTwo();
+    public static TelaPro8s newInstance(int index) {
+        TelaPro8s fragment = new TelaPro8s();
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SECTION_NUMBER, index);
         fragment.setArguments(bundle);
