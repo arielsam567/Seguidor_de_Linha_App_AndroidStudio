@@ -13,6 +13,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.seguidor_de_linha.ui.main.PlaceholderFragmentOne;
+
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -31,8 +33,8 @@ public class Device extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device);
 
-        btnPaired = (Button) findViewById(R.id.button);
-        devicelist = (ListView) findViewById(R.id.listView);
+        btnPaired = findViewById(R.id.button);
+        devicelist = findViewById(R.id.listView);
 
         myBluetooth = BluetoothAdapter.getDefaultAdapter();
         if ( myBluetooth==null ) {
@@ -73,10 +75,13 @@ public class Device extends AppCompatActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             String info = ((TextView) view).getText().toString();
             String address = info.substring(info.length()-17);
-            Intent i = new Intent(Device.this, TesteTela.class);
+            Intent i = new Intent(Device.this, MainActivity.class);
             i.putExtra(EXTRA_ADDRESS, address);
             startActivity(i);
+
         }
     };
+
+    
 
 }

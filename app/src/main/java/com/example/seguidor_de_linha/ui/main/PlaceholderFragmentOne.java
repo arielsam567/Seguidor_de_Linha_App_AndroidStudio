@@ -1,5 +1,6 @@
 package com.example.seguidor_de_linha.ui.main;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.arch.lifecycle.ViewModelProviders;
 import android.bluetooth.BluetoothAdapter;
@@ -8,9 +9,11 @@ import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -18,7 +21,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.seguidor_de_linha.Device;
+import com.example.seguidor_de_linha.MainActivity;
 import com.example.seguidor_de_linha.R;
+import com.example.seguidor_de_linha.TesteTela;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -32,12 +37,13 @@ public class PlaceholderFragmentOne extends Fragment {
     private View root;
     Button btnConnect, btnReconnect, btnUp, btnRight, btnDonw, btnLeft, btnStart, btnStop, btnReadSensors, trocaTela;
     TextView txtStatus;
-    String address = null;
+    String mAddress = "98:D3:31:80:61:5A";
     private ProgressDialog progress;
     BluetoothAdapter myBluetooth = null;
     BluetoothSocket btSocket = null;
     private boolean isBtConnected = false;
     static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+    private static final String ADDRESS = "Address";
 
 
     public void reference_elements() {
@@ -53,6 +59,7 @@ public class PlaceholderFragmentOne extends Fragment {
         txtStatus = root.findViewById(R.id.txtStatus);
         trocaTela = root.findViewById(R.id.button3);
     }
+    @SuppressLint("SetTextI18n")
     public void setText_elements() {
         btnConnect.setText("Conectar");
         btnReconnect.setText("⟳");
@@ -64,10 +71,36 @@ public class PlaceholderFragmentOne extends Fragment {
         btnStop.setText("\uD83D\uDEAB         Parar");
         btnReadSensors.setText("Ler sensores");
     }
-    public static PlaceholderFragmentOne newInstance(int index) {
+    @SuppressLint("ClickableViewAccessibility")
+    public void setValueButton(){
+        btnUp.setOnTouchListener(new BotaoListener("8"));
+        btnRight.setOnTouchListener(new BotaoListener("6"));
+        btnDonw.setOnTouchListener(new BotaoListener("2"));
+        btnLeft.setOnTouchListener(new BotaoListener("4"));
+        btnStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
+                sendSignal("c");
+            }
+        });
+        btnStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
+                sendSignal("b");
+            }
+        });
+        btnReadSensors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
+                sendSignal("a");
+            }
+        });
+    }
+    public static PlaceholderFragmentOne newInstance(int index, String address) {
         PlaceholderFragmentOne fragment = new PlaceholderFragmentOne();
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SECTION_NUMBER, index);
+        bundle.putString(ADDRESS, address);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -79,6 +112,10 @@ public class PlaceholderFragmentOne extends Fragment {
         int index = 1;
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
+            mAddress = getArguments().getString(ADDRESS);
+            if (mAddress != null) {
+                new ConnectBT().execute(mAddress);
+            }
         }
         pageViewModel.setIndex(index);
     }
@@ -90,23 +127,31 @@ public class PlaceholderFragmentOne extends Fragment {
         root = inflater.inflate(R.layout.tela_junior, container, false);
         reference_elements();
         setText_elements();
+        setValueButton();
 
-        View.OnClickListener parear = new View.OnClickListener() {
+
+
+
+
+
+        btnReconnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), Device.class);
-                startActivity(intent);
+                Disconnect();
             }
-        };
-        btnConnect.setOnClickListener(parear);
-
-
-       // new ConnectBT().execute();
-
-        btnUp.setOnClickListener(new View.OnClickListener() {
+        });
+        btnConnect.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
-            public void onClick (View v) {
-                sendSignal("8");
+            public void onClick(View v) {
+                if (!isBtConnected) {
+                    Intent intent = new Intent(getContext(), Device.class);
+                    startActivity(intent);
+                } else if (isBtConnected) {
+                    Disconnect();
+                    btnConnect.setText("Conectar");
+                    isBtConnected = false;
+                }
             }
         });
         return root;
@@ -115,11 +160,35 @@ public class PlaceholderFragmentOne extends Fragment {
 
 
 
+    //Botao
+    public class BotaoListener implements View.OnTouchListener {
+    private String mensagem;
+    BotaoListener(String mensagem) {
+        super();
+        this.mensagem = mensagem;
+    }
+    @SuppressLint("ClickableViewAccessibility")
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        if (isBtConnected) {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                Message msg = Message.obtain();
+                msg.obj = mensagem;
+                sendSignal(mensagem);
+            }
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                Message msg = Message.obtain();
+                msg.obj = "0";
+                sendSignal("0");
+            }
+        }
 
+        return false;
+    }
 
+}
     /////////////////////////////////////////////////
-
-
+    //Bluetooth
     private void sendSignal ( String number ) {
         if ( btSocket != null ) {
             try {
@@ -129,7 +198,6 @@ public class PlaceholderFragmentOne extends Fragment {
             }
         }
     }
-
     private void Disconnect () {
         if ( btSocket!=null ) {
             try {
@@ -140,23 +208,22 @@ public class PlaceholderFragmentOne extends Fragment {
         }
 
     }
-
     private void msg (String s) {
         Toast.makeText(getContext(), s, Toast.LENGTH_LONG).show();
     }
 
-    private class ConnectBT extends AsyncTask<Void, Void, Void> {
+    private class ConnectBT extends AsyncTask<String, Void, Void> {
         private boolean ConnectSuccess = true;
         @Override
         protected  void onPreExecute () {
             progress = ProgressDialog.show(getContext(), "Connecting...", "Please Wait!!!");
-        }
+      }
         @Override
-        protected Void doInBackground (Void... devices) {
+        protected Void doInBackground (String... devices) {
             try {
-                if ( btSocket==null || !isBtConnected ) {
+                if ( btSocket==null || !isBtConnected && mAddress!=null ) {
                     myBluetooth = BluetoothAdapter.getDefaultAdapter();
-                    BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(address);
+                    BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(mAddress);
                     btSocket = dispositivo.createInsecureRfcommSocketToServiceRecord(myUUID);
                     BluetoothAdapter.getDefaultAdapter().cancelDiscovery();
                     btSocket.connect();
@@ -171,17 +238,14 @@ public class PlaceholderFragmentOne extends Fragment {
             super.onPostExecute(result);
             if (!ConnectSuccess) {
                 msg("Connection Failed. Is it a SPP Bluetooth? Try again.");
-
             } else {
                 msg("Connected");
+                btnConnect.setText("Desconectar");
                 isBtConnected = true;
             }
             progress.dismiss();
         }
     }
-
-
-
     /////////////////////////////////////////////////
 }
 

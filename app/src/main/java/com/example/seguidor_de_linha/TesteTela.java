@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.UUID;
 
 public class TesteTela extends AppCompatActivity {
@@ -100,8 +102,6 @@ public class TesteTela extends AppCompatActivity {
         Intent newint = getIntent();
         address = newint.getStringExtra(Device.EXTRA_ADDRESS);
         new ConnectBT().execute();
-
-
         btnReconnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,8 +122,6 @@ public class TesteTela extends AppCompatActivity {
                 }
             }
         });
-
-
         btnStart.setOnTouchListener(new BotaoListener("8"));
 
     }
@@ -185,12 +183,10 @@ public class TesteTela extends AppCompatActivity {
     @SuppressLint("StaticFieldLeak")
     private class ConnectBT extends AsyncTask<Void, Void, Void> {
         private boolean ConnectSuccess = true;
-
         @Override
         protected void onPreExecute() {
             progress = ProgressDialog.show(TesteTela.this, "Connecting...", "Please Wait!!!");
         }
-
         @Override
         protected Void doInBackground(Void... devices) {
             try {
@@ -225,5 +221,30 @@ public class TesteTela extends AppCompatActivity {
         }
     }
 ////////////////////////////////////////////////////////////////////////////////////
+
+
+
+    ////////////////////////////
+    //Recebe dados do bluetooth
+    private InputStream inStream;
+    private String read() {
+        String s = "";
+        try {
+            // Check if there are bytes available
+            if (inStream.available() > 0) {
+                // Read bytes into a buffer
+                byte[] inBuffer = new byte[1024];
+                int bytesRead = inStream.read(inBuffer);
+
+                // Convert read bytes into a string
+                s = new String(inBuffer, "ASCII");
+                s = s.substring(0, bytesRead);
+            }
+        } catch (Exception e) {
+            //Log.e(TAG, "Read failed!", e);
+        }
+        return s;
+    }
+    ///////////////////////////////////
 
 }

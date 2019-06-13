@@ -18,11 +18,13 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2,R.string.tab_text_3 };
     private final Context mContext;
+    private String mAddress;
 
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm) {
+    public SectionsPagerAdapter(Context context, FragmentManager fm, String address) {
         super(fm);
         mContext = context;
+        mAddress = address;
     }
 
     @Override
@@ -30,13 +32,13 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         // retorna o Fragment de acordo com o número da página do ViewPager;
         switch (position){
             case 0:
-                return PlaceholderFragmentOne.newInstance(position +1);
+                return PlaceholderFragmentOne.newInstance(position +1, mAddress);
             case 1:
                 return PlaceholderFragmentTwo.newInstance(position + 1);
             case 2:
                 return PlaceholderFragmentThree.newInstance(position + 1);
             default:
-                return PlaceholderFragmentOne.newInstance(position + 1);
+                return PlaceholderFragmentOne.newInstance(position + 1, mAddress);
         }
     }
 

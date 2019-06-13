@@ -15,18 +15,19 @@ import com.example.seguidor_de_linha.ui.main.SectionsPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static String address = null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent newint = getIntent();
+        String address = newint.getStringExtra(Device.EXTRA_ADDRESS);
 //http://xahlee.info/comp/cars_trains_airplanes_boats.html
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), address);
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+
 
 
     }
