@@ -36,7 +36,7 @@ public class TelaJunior extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     private View root;
     private  static final String TAG = "";
-    Button btnConnect, btnReconnect, btnUp, btnRight, btnDonw, btnLeft, btnStart, btnStop, btnReadSensors;
+    Button btnConnect, btnReconnect, btnUp, btnRight, btnDown, btnLeft, btnStart, btnStop, btnReadSensors, btnSett, btnReadData;
     TextView txtStatus;
 
     InputStream inStream; //to receive data
@@ -193,10 +193,12 @@ public class TelaJunior extends Fragment {
         btnReconnect = root.findViewById(R.id.buttonreconnect);
         btnUp = root.findViewById(R.id.up);
         btnRight = root.findViewById(R.id.right);
-        btnDonw = root.findViewById(R.id.donw);
+        btnDown = root.findViewById(R.id.donw);
         btnLeft = root.findViewById(R.id.left);
         btnStart = root.findViewById(R.id.start);
         btnStop = root.findViewById(R.id.stop);
+        btnSett = root.findViewById(R.id.sett);
+        btnReadData = root.findViewById(R.id.readdata);
         btnReadSensors = root.findViewById(R.id.read);
         txtStatus = root.findViewById(R.id.txtStatus);
     }
@@ -207,34 +209,48 @@ public class TelaJunior extends Fragment {
         btnReconnect.setText("⟳");
         btnUp.setText("↑");
         btnRight.setText("→");
-        btnDonw.setText("↓");
+        btnDown.setText("↓");
         btnLeft.setText("←");
         btnStart.setText("►        Iniciar");
         btnStop.setText("\uD83D\uDEAB         Parar");
+        btnSett.setText("Settar");
+        btnReadData.setText("Conferir");
         btnReadSensors.setText("Ler sensores");
     }
     @SuppressLint("ClickableViewAccessibility")
     public void setValueButton(){
+        //start      s
+        //stop
+        //sett       a
+        //readdata   x
+        //sensor     y
+
+
         btnUp.setOnTouchListener(new btnListener("8"));
         btnRight.setOnTouchListener(new btnListener("6"));
-        btnDonw.setOnTouchListener(new btnListener("2"));
+        btnDown.setOnTouchListener(new btnListener("2"));
         btnLeft.setOnTouchListener(new btnListener("4"));
+
+        btnStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
+                sendSignal("s");
+            }
+        });
         btnStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
                 sendSignal("c");
             }
         });
-        btnStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick (View v) {
-                sendSignal("b");
-            }
-        });
+
+        btnSett.setOnTouchListener(new btnListener("a"));
+        btnReadData.setOnTouchListener(new btnListener("x"));
+
         btnReadSensors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
-                sendSignal("a");
+                sendSignal("y");
                 txtStatus.setText(receiveData());
             }
         });

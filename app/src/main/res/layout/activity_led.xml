@@ -26,7 +26,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/stop"
+        android:id="@+id/readdata"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -40,11 +40,11 @@
         android:textColor="#FFFFFF"
         android:textSize="23sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/start"
-        app:layout_constraintTop_toTopOf="@+id/start" />
+        app:layout_constraintStart_toEndOf="@+id/sett"
+        app:layout_constraintTop_toTopOf="@+id/sett" />
 
     <Button
-        android:id="@+id/start"
+        android:id="@+id/sett"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -59,7 +59,7 @@
         android:textColor="#FFFFFF"
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/read"
-        app:layout_constraintEnd_toStartOf="@+id/stop"
+        app:layout_constraintEnd_toStartOf="@+id/readdata"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -173,8 +173,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/start"
-        app:layout_constraintEnd_toEndOf="@+id/start" />
+        app:layout_constraintBottom_toTopOf="@+id/sett"
+        app:layout_constraintEnd_toEndOf="@+id/sett" />
 
 
 </android.support.constraint.ConstraintLayout>

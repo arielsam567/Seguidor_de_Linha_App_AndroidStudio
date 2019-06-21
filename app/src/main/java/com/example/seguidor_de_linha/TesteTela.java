@@ -10,7 +10,6 @@ import android.os.AsyncTask;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -43,8 +42,8 @@ public class TesteTela extends AppCompatActivity {
         btnRight = findViewById(R.id.right);
         btnDonw = findViewById(R.id.donw);
         btnLeft = findViewById(R.id.left);
-        btnStart = findViewById(R.id.start);
-        btnStop = findViewById(R.id.stop);
+        btnStart = findViewById(R.id.sett);
+        btnStop = findViewById(R.id.readdata);
         btnReadSensors = findViewById(R.id.read);
         txtStatus = findViewById(R.id.txtStatus);
     }

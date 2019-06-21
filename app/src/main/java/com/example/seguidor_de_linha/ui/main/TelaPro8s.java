@@ -26,8 +26,8 @@ public class TelaPro8s extends Fragment {
         btnRight = root.findViewById(R.id.right);
         btnDonw = root.findViewById(R.id.donw);
         btnLeft = root.findViewById(R.id.left);
-        btnStart = root.findViewById(R.id.start);
-        btnStop = root.findViewById(R.id.stop);
+        btnStart = root.findViewById(R.id.sett);
+        btnStop = root.findViewById(R.id.readdata);
         btnReadSensors = root.findViewById(R.id.read);
     }
     @SuppressLint("SetTextI18n")

@@ -2,9 +2,12 @@
   <dictionary name="Acer">
     <words>
       <w>conectar</w>
+      <w>conferir</w>
       <w>dados</w>
       <w>endereco</w>
+      <w>readdata</w>
       <w>receber</w>
+      <w>settar</w>
       <w>tela</w>
     </words>
   </dictionary>
