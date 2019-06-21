@@ -1,5 +1,6 @@
 package com.example.seguidor_de_linha.ui.main;
 
+import android.annotation.SuppressLint;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import com.example.seguidor_de_linha.R;
 
 /**
@@ -17,9 +17,31 @@ import com.example.seguidor_de_linha.R;
 public class TelaPro8s extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
-
-    private PageViewModel pageViewModel;
     private View root;
+    Button btnConnect, btnReconnect, btnUp,btnRight, btnDonw, btnLeft, btnStart, btnStop,btnReadSensors;
+    public void reference_elements(){
+        btnConnect = root.findViewById(R.id.buttonconnect);
+        btnReconnect =root. findViewById(R.id.buttonreconnect);
+        btnUp = root.findViewById(R.id.up);
+        btnRight = root.findViewById(R.id.right);
+        btnDonw = root.findViewById(R.id.donw);
+        btnLeft = root.findViewById(R.id.left);
+        btnStart = root.findViewById(R.id.start);
+        btnStop = root.findViewById(R.id.stop);
+        btnReadSensors = root.findViewById(R.id.read);
+    }
+    @SuppressLint("SetTextI18n")
+    public void setText_elements(){
+        btnConnect.setText("Conectar");
+        btnReconnect.setText("⟳");
+        btnUp.setText("↑");
+        btnRight.setText("→");
+        btnDonw.setText("↓");
+        btnLeft.setText("←");
+        btnStart.setText("►");
+        btnStop.setText("\uD83D\uDEAB");
+        btnReadSensors.setText("\uD83D\uDD0D");
+    }
 
     public static TelaPro8s newInstance(int index) {
         TelaPro8s fragment = new TelaPro8s();
@@ -32,7 +54,7 @@ public class TelaPro8s extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        pageViewModel = ViewModelProviders.of(this).get(PageViewModel.class);
+        PageViewModel pageViewModel = ViewModelProviders.of(this).get(PageViewModel.class);
         int index = 1;
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
@@ -50,29 +72,6 @@ public class TelaPro8s extends Fragment {
         return root;
     }
 
-    Button btnConnect, btnReconnect, btnUp,btnRight, btnDonw, btnLeft, btnStart, btnStop,btnReadSensors;
 
-    public void reference_elements(){
-        btnConnect = root.findViewById(R.id.buttonconnect);
-        btnReconnect =root. findViewById(R.id.buttonreconnect);
-        btnUp = root.findViewById(R.id.up);
-        btnRight = root.findViewById(R.id.right);
-        btnDonw = root.findViewById(R.id.donw);
-        btnLeft = root.findViewById(R.id.left);
-        btnStart = root.findViewById(R.id.start);
-        btnStop = root.findViewById(R.id.stop);
-        btnReadSensors = root.findViewById(R.id.read);
-    }
-
-    public void setText_elements(){
-        btnConnect.setText("Conectar");
-        btnReconnect.setText("⟳");
-        btnUp.setText("↑");
-        btnRight.setText("→");
-        btnDonw.setText("↓");
-        btnLeft.setText("←");
-        btnStart.setText("►");
-        btnStop.setText("\uD83D\uDEAB");
-        btnReadSensors.setText("\uD83D\uDD0D");
-    }
 }
+

@@ -1,8 +1,12 @@
 package com.example.seguidor_de_linha;
 
+import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +16,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.seguidor_de_linha.ui.main.TelaJunior;
+import com.example.seguidor_de_linha.ui.main.TelaPro8s;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -25,11 +32,13 @@ public class Device extends AppCompatActivity {
     private BluetoothAdapter myBluetooth = null;
     private Set<BluetoothDevice> pairedDevices;
     public static String EXTRA_ADDRESS = "device_address";
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device);
+        intent = getIntent();
 
         btnPaired = findViewById(R.id.button);
         devicelist = findViewById(R.id.listView);
@@ -71,15 +80,20 @@ public class Device extends AppCompatActivity {
     private AdapterView.OnItemClickListener myListClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
             String info = ((TextView) view).getText().toString();
             String address = info.substring(info.length()-17);
             Intent i = new Intent(Device.this, MainActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             i.putExtra(EXTRA_ADDRESS, address);
-            startActivity(i);
+            startActivityForResult(i, 2);
+            //startActivity(i);
+            //(MainActivity.class , i);
 
+            finish();
         }
     };
 
-    
+
 
 }

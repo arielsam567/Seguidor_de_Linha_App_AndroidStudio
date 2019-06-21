@@ -24,8 +24,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Selecione o dispositivo"
-                android:textColor="#0033FF"
+                android:text="     Selecione o dispositivo"
+                android:textColor="#008577"
                 android:textSize="16dp"
                 tools:layout_editor_absoluteX="168dp"
                 tools:layout_editor_absoluteY="134dp" />
@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@android:color/holo_blue_light"
+                android:background="#008577"
                 android:text="Pair"
                 tools:layout_editor_absoluteX="190dp"
                 tools:layout_editor_absoluteY="183dp" />

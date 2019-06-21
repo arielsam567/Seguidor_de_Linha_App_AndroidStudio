@@ -16,7 +16,7 @@ import com.example.seguidor_de_linha.R;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2,R.string.tab_text_3 };
+    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_4};
     private final Context mContext;
     private String mAddress;
 
@@ -34,9 +34,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return TelaJunior.newInstance(position +1, mAddress);
             case 1:
-                return TelaPro8s.newInstance(position + 1);
-            case 2:
-                return TelaPro6s.newInstance(position + 1);
+                return TelaDados.newInstance(position + 1);
             default:
                 return TelaJunior.newInstance(position + 1, mAddress);
         }
@@ -52,6 +50,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // quantidade de paginas mostradas.
-        return 3;
+        return 2;
     }
 }

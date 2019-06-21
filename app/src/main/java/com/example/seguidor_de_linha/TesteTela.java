@@ -48,7 +48,6 @@ public class TesteTela extends AppCompatActivity {
         btnReadSensors = findViewById(R.id.read);
         txtStatus = findViewById(R.id.txtStatus);
     }
-
     @SuppressLint("SetTextI18n")
     public void setText_elements() {
         btnConnect.setText("Conectar");
@@ -61,7 +60,6 @@ public class TesteTela extends AppCompatActivity {
         btnStop.setText("\uD83D\uDEAB         Parar");
         btnReadSensors.setText("Ler sensores");
     }
-
     @SuppressLint("ClickableViewAccessibility")
     public void setValueButton(){
         btnUp.setOnTouchListener(new BotaoListener("8"));
