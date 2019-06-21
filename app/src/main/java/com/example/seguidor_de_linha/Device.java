@@ -1,12 +1,8 @@
 package com.example.seguidor_de_linha;
 
-import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,9 +12,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.seguidor_de_linha.ui.main.TelaJunior;
-import com.example.seguidor_de_linha.ui.main.TelaPro8s;
 
 import java.util.ArrayList;
 import java.util.Set;
