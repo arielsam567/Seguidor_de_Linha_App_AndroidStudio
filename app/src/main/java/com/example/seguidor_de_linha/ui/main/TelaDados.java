@@ -1,19 +1,29 @@
 package com.example.seguidor_de_linha.ui.main;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.DialogInterface;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.example.seguidor_de_linha.Db.CreateDatabase;
+import com.example.seguidor_de_linha.Db.DAL;
 import com.example.seguidor_de_linha.R;
+
 
 /**
  * A placeholder fragment containing a simple view.
@@ -23,11 +33,11 @@ public class TelaDados extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private View root;
-
+    TextView tt;
     //private TextView txtThre,txtVmax,txtVmin,txtKp,txtKd,txtTimer,txtT1,txtT2,txtT3,txtT4,txtT5,txtT6,txtT7,txtT8,txtT9,txtT10;
     public static EditText editThre, editVmax, editVmin, editKp, editKd, editTimer, editT1, editT2, editT3, editT4, editT5, editT6, editT7, editT8, editT9, editT10;
-    private Button access, save;
-    private  TextView tt;
+    private Button btndelete, btnsave;
+    private ListView listaDados;
 
     public static TelaDados newInstance(int index) {
         TelaDados fragment = new TelaDados();
@@ -56,20 +66,70 @@ public class TelaDados extends Fragment {
         reference_elements();
         setText_elements();
 
-        save.setOnClickListener(new View.OnClickListener() {
+        btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                tt.setText(String.valueOf(editVmax.getText()));
+            public void onClick(View v) { onCreateDialogforInsert();
             }
         });
-
-
-
+        btndelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { onCreateDialogforDelete();
+            }
+        });
+        db();
         return root;
     }
 
+    public void db() {
+        DAL dal = new DAL(getContext());
+        Cursor cursor = dal.loadAll();
+        String[] fields = new String[]{CreateDatabase.INFORMACAO, CreateDatabase.ID, CreateDatabase.THRESHOLD, CreateDatabase.VMAX,
+                CreateDatabase.VMIN, CreateDatabase.KP, CreateDatabase.KD
+                , CreateDatabase.TIMER, CreateDatabase.T1, CreateDatabase.T2, CreateDatabase.T3, CreateDatabase.T4, CreateDatabase.T5
+                , CreateDatabase.T6, CreateDatabase.T7, CreateDatabase.T8, CreateDatabase.T9, CreateDatabase.T10, CreateDatabase.D1
+                , CreateDatabase.D2, CreateDatabase.D3, CreateDatabase.D4};
+
+        int[] ids = {R.id.tvInfo, R.id.tvId, R.id.tvThre, R.id.tvVmax, R.id.tvVmin, R.id.tvKp, R.id.tvKd, R.id.tvTimer, R.id.tvT1, R.id.tvT2, R.id.tvT3
+                , R.id.tvT4, R.id.tvT5, R.id.tvT6, R.id.tvT7, R.id.tvT8, R.id.tvT9, R.id.tvT10, R.id.tvD1, R.id.tvD2, R.id.tvD3, R.id.tvD4};
+
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(getContext(),
+                R.layout.lista_dados, cursor, fields, ids, 0);
+
+        listaDados.setAdapter(adapter);
 
 
+    }
+    public void saveInDb(String info) {
+        DAL dal = new DAL(getContext());
+        String dado = info;
+        int thre = Integer.valueOf(editThre.getText().toString());
+        int vmax = Integer.valueOf(editVmax.getText().toString());
+        int vmin = Integer.valueOf(editVmin.getText().toString());
+        int kp = Integer.valueOf(editKp.getText().toString());
+        int kd = Integer.valueOf(editKd.getText().toString());
+        int timer = Integer.valueOf(editTimer.getText().toString());
+        int t1 = Integer.valueOf(editT1.getText().toString());
+        int t2 = Integer.valueOf(editT2.getText().toString());
+        int t3 = Integer.valueOf(editT3.getText().toString());
+        int t4 = Integer.valueOf(editT4.getText().toString());
+        int t5 = Integer.valueOf(editT5.getText().toString());
+        int t6 = Integer.valueOf(editT6.getText().toString());
+        int t7 = Integer.valueOf(editT7.getText().toString());
+        int t8 = Integer.valueOf(editT8.getText().toString());
+        int t9 = Integer.valueOf(editT9.getText().toString());
+        int t10 = Integer.valueOf(editT10.getText().toString());
+        int d1 = 1;
+        int d2 = 2;
+        int d3 = 3;
+        int d4 = 4;
+
+
+        if (dal.insert(dado, thre, vmax, vmin, kp, kd, timer, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, d1, d2, d3, d4)) {
+            Toast.makeText(getContext(), "Registro Inserido com sucesso!", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getContext(), "Erro ao inserir registro!", Toast.LENGTH_LONG).show();
+        }
+    }
     @SuppressLint("CutPasteId")
     public void reference_elements() {
         tt = root.findViewById(R.id.textView5);
@@ -89,8 +149,9 @@ public class TelaDados extends Fragment {
         editT8 = root.findViewById(R.id.txtT8);
         editT9 = root.findViewById(R.id.txtT9);
         editT10 = root.findViewById(R.id.txtT10);
-        access = root.findViewById(R.id.buttonAccess);
-        save = root.findViewById(R.id.buttonSave);
+        btndelete = root.findViewById(R.id.buttonDelete);
+        btnsave = root.findViewById(R.id.buttonSave);
+        listaDados = root.findViewById(R.id.listViewDados);
     }
     @SuppressLint("SetTextI18n")
     public void setText_elements() {
@@ -110,7 +171,107 @@ public class TelaDados extends Fragment {
         editT8.setText("");
         editT9.setText("");
         editT10.setText("");
-        save.setText("Salvar");
-        access.setText("Acessar");
+        btnsave.setText("Salvar");
+        btndelete.setText("Deletar");
+    }
+    public void onCreateDialogforInsert() {
+        final EditText edt = new EditText(getContext());
+        edt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
+        AlertDialog.Builder altBx = new AlertDialog.Builder(getContext());
+        altBx.setTitle("Banco de dados");
+        altBx.setMessage("Deseja adicionar alguma informação?");
+        altBx.setView(edt);
+
+        altBx.setPositiveButton("Adicionar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                if (edt.getText().toString().length() != 0) {
+                    String teste = edt.getText().toString();
+                    saveInDb(teste);
+                } else {
+                    saveInDb("");
+                }
+            }
+        });
+        altBx.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        altBx.show();
+//                AlertDialog.Builder mensagem = new AlertDialog.Builder(getContext());
+//                mensagem.setTitle("Adicionando ao Banco de Dados");
+//                mensagem.setMessage("Deseja adicionar alguma informação?");
+//                // add editview
+//                final EditText input = new EditText(getContext());
+//                mensagem.setView(input);
+//                mensagem.setPositiveButton("Adicionar", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        try {
+//                            String info = String.valueOf(input.getText());
+//                            saveInDb(info);
+//                        } catch (Exception e) {
+//                            saveInDb(" ");
+//                        }
+//                    }
+//                });
+//                mensagem.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+//                    }
+//                });
+//
+//                mensagem.show();
+//                // FORÇA O TECLADO APARECER AO ABRIR O ALERT
+//                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+//                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+    }
+    public void onCreateDialogforDelete() {
+        final EditText edt = new EditText(getContext());
+        edt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
+        AlertDialog.Builder altBx = new AlertDialog.Builder(getContext());
+        altBx.setTitle("Banco de dados");
+        altBx.setMessage("Indique o Id dos dados que deseja excluir");
+        altBx.setView(edt);
+
+        altBx.setPositiveButton("Excluir", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                if (edt.getText().toString().length() != 0) {
+                    int id = Integer.parseInt(edt.getText().toString());
+                    DAL dal = new DAL(getContext());
+                    dal.delete(id);
+                } else {
+                }
+            }
+        });
+        altBx.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        altBx.show();
+//                AlertDialog.Builder mensagem = new AlertDialog.Builder(getContext());
+//                mensagem.setTitle("Adicionando ao Banco de Dados");
+//                mensagem.setMessage("Deseja adicionar alguma informação?");
+//                // add editview
+//                final EditText input = new EditText(getContext());
+//                mensagem.setView(input);
+//                mensagem.setPositiveButton("Adicionar", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        try {
+//                            String info = String.valueOf(input.getText());
+//                            saveInDb(info);
+//                        } catch (Exception e) {
+//                            saveInDb(" ");
+//                        }
+//                    }
+//                });
+//                mensagem.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+//                    }
+//                });
+//
+//                mensagem.show();
+//                // FORÇA O TECLADO APARECER AO ABRIR O ALERT
+//                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+//                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
 }

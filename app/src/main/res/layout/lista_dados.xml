@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvD4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4"
+        app:layout_constraintStart_toEndOf="@+id/ldd4"
+        app:layout_constraintTop_toTopOf="@+id/ldd4" />
+
+    <TextView
+        android:id="@+id/tvD3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3"
+        app:layout_constraintStart_toEndOf="@+id/ldd3"
+        app:layout_constraintTop_toTopOf="@+id/ldd3" />
+
+    <TextView
+        android:id="@+id/tvD2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2"
+        app:layout_constraintStart_toEndOf="@+id/ldd2"
+        app:layout_constraintTop_toTopOf="@+id/ldd2" />
+
+    <TextView
+        android:id="@+id/tvT6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="6000"
+        app:layout_constraintStart_toEndOf="@+id/ldt6"
+        app:layout_constraintTop_toTopOf="@+id/ldt6" />
+
+    <TextView
+        android:id="@+id/tvT5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5000"
+        app:layout_constraintStart_toEndOf="@+id/ldt5"
+        app:layout_constraintTop_toTopOf="@+id/ldt5" />
+
+    <TextView
+        android:id="@+id/tvT3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="T3:3000"
+        app:layout_constraintStart_toEndOf="@+id/ldt3"
+        app:layout_constraintTop_toTopOf="@+id/ldt3" />
+
+    <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="aaaaaa"
+        app:layout_constraintStart_toEndOf="@+id/ldinfo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvThre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100"
+        app:layout_constraintStart_toEndOf="@+id/ldthre"
+        app:layout_constraintTop_toBottomOf="@+id/tvInfo" />
+
+    <TextView
+        android:id="@+id/tvId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        app:layout_constraintStart_toEndOf="@+id/ldid"
+        app:layout_constraintTop_toBottomOf="@+id/tvInfo" />
+
+    <TextView
+        android:id="@+id/tvVmax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="255"
+        app:layout_constraintStart_toEndOf="@+id/ldVmax"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvVmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100"
+        app:layout_constraintStart_toEndOf="@+id/ldvmin"
+        app:layout_constraintTop_toTopOf="@+id/tvThre" />
+
+    <TextView
+        android:id="@+id/tvKd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="25"
+        app:layout_constraintStart_toEndOf="@+id/ldkd"
+        app:layout_constraintTop_toTopOf="@+id/tvVmin" />
+
+    <TextView
+        android:id="@+id/tvKp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="55"
+        app:layout_constraintStart_toEndOf="@+id/ldkp"
+        app:layout_constraintTop_toTopOf="@+id/tvVmax" />
+
+    <TextView
+        android:id="@+id/tvTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="15000"
+        app:layout_constraintStart_toEndOf="@+id/ldtimer"
+        app:layout_constraintTop_toBottomOf="@+id/tvThre" />
+
+    <TextView
+        android:id="@+id/tvT1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1000"
+        app:layout_constraintStart_toEndOf="@+id/ldt1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvT2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2000"
+        app:layout_constraintStart_toEndOf="@+id/ldt2"
+        app:layout_constraintTop_toTopOf="@+id/ldt2" />
+
+    <TextView
+        android:id="@+id/tvT4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="T4:4000"
+        app:layout_constraintStart_toEndOf="@+id/ldt4"
+        app:layout_constraintTop_toTopOf="@+id/ldt4" />
+
+    <TextView
+        android:id="@+id/tvT7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="7000"
+        app:layout_constraintStart_toEndOf="@+id/ldt7"
+        app:layout_constraintTop_toTopOf="@+id/ldt7" />
+
+    <TextView
+        android:id="@+id/tvT8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="8000"
+        app:layout_constraintStart_toEndOf="@+id/ldt8"
+        app:layout_constraintTop_toTopOf="@+id/ldt8" />
+
+    <TextView
+        android:id="@+id/tvT9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="9000"
+        app:layout_constraintStart_toEndOf="@+id/ldt9"
+        app:layout_constraintTop_toTopOf="@+id/ldt9" />
+
+    <TextView
+        android:id="@+id/tvT10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10000"
+        app:layout_constraintStart_toEndOf="@+id/ldt10"
+        app:layout_constraintTop_toTopOf="@+id/ldt10" />
+
+    <TextView
+        android:id="@+id/tvD1"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:text="1"
+        app:layout_constraintStart_toEndOf="@+id/ldd1"
+        app:layout_constraintTop_toBottomOf="@+id/tvVmin" />
+
+    <TextView
+        android:id="@+id/ldinfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Info:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ldVmax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Vmax:"
+        app:layout_constraintStart_toEndOf="@+id/tvInfo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ldkp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Kp:"
+        app:layout_constraintStart_toEndOf="@+id/tvVmax"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ldid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Id:"
+        app:layout_constraintStart_toStartOf="@+id/ldinfo"
+        app:layout_constraintTop_toBottomOf="@+id/ldinfo" />
+
+    <TextView
+        android:id="@+id/ldvmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Vmin:"
+        app:layout_constraintStart_toEndOf="@+id/tvThre"
+        app:layout_constraintTop_toBottomOf="@+id/ldVmax" />
+
+    <TextView
+        android:id="@+id/ldkd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Kd:"
+        app:layout_constraintStart_toEndOf="@+id/tvVmin"
+        app:layout_constraintTop_toTopOf="@+id/tvVmin" />
+
+    <TextView
+        android:id="@+id/ldd1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" D₁:"
+        app:layout_constraintStart_toEndOf="@+id/tvTimer"
+        app:layout_constraintTop_toTopOf="@+id/tvTimer" />
+
+    <TextView
+        android:id="@+id/ldt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" T₁:"
+        app:layout_constraintStart_toEndOf="@+id/tvKp"
+        app:layout_constraintTop_toTopOf="@+id/tvKp" />
+
+    <TextView
+        android:id="@+id/ldtimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Timer:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ldid" />
+
+    <TextView
+        android:id="@+id/ldthre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:text=" Thre:"
+        app:layout_constraintStart_toEndOf="@+id/tvId"
+        app:layout_constraintTop_toTopOf="@+id/ldid" />
+
+    <TextView
+        android:id="@+id/ldt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" T₂:"
+        app:layout_constraintStart_toEndOf="@+id/tvT1"
+        app:layout_constraintTop_toTopOf="@+id/tvT1" />
+
+    <TextView
+        android:id="@+id/ldd2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" D₂:"
+        app:layout_constraintStart_toEndOf="@+id/tvD1"
+        app:layout_constraintTop_toTopOf="@+id/ldd1" />
+
+    <TextView
+        android:id="@+id/ldt3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" T₃:"
+        app:layout_constraintStart_toEndOf="@+id/tvT2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ldd3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" D₃:"
+        app:layout_constraintStart_toEndOf="@+id/tvD2"
+        app:layout_constraintTop_toTopOf="@+id/ldd2" />
+
+    <TextView
+        android:id="@+id/ldd4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" D₄:"
+        app:layout_constraintStart_toEndOf="@+id/tvD3"
+        app:layout_constraintTop_toTopOf="@+id/ldd3" />
+
+    <TextView
+        android:id="@+id/ldt4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" T₄:"
+        app:layout_constraintStart_toEndOf="@+id/tvT3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ldt5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" T₅:"
+        app:layout_constraintStart_toEndOf="@+id/tvKd"
+        app:layout_constraintTop_toTopOf="@+id/ldkd" />
+
+    <TextView
+        android:id="@+id/ldt6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" T₆:"
+        app:layout_constraintStart_toEndOf="@+id/tvT5"
+        app:layout_constraintTop_toTopOf="@+id/ldt5" />
+
+    <TextView
+        android:id="@+id/ldt7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" T₇:"
+        app:layout_constraintStart_toEndOf="@+id/tvT6"
+        app:layout_constraintTop_toTopOf="@+id/tvT6" />
+
+    <TextView
+        android:id="@+id/ldt8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" T₈:"
+        app:layout_constraintStart_toEndOf="@+id/tvT7"
+        app:layout_constraintTop_toTopOf="@+id/tvT7" />
+
+    <TextView
+        android:id="@+id/ldt9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" T₉:"
+        app:layout_constraintStart_toEndOf="@+id/tvD4"
+        app:layout_constraintTop_toBottomOf="@+id/tvKd" />
+
+    <TextView
+        android:id="@+id/ldt10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" T₁₀:"
+        app:layout_constraintStart_toEndOf="@+id/tvT9"
+        app:layout_constraintTop_toTopOf="@+id/ldt9" />
+
+</android.support.constraint.ConstraintLayout>
