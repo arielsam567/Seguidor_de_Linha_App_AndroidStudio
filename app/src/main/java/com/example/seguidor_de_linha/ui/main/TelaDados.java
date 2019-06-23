@@ -12,6 +12,7 @@ import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -33,11 +34,12 @@ public class TelaDados extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private View root;
-    TextView tt;
-    //private TextView txtThre,txtVmax,txtVmin,txtKp,txtKd,txtTimer,txtT1,txtT2,txtT3,txtT4,txtT5,txtT6,txtT7,txtT8,txtT9,txtT10;
+    //private TextView txtThre, txtVmax, txtVmin, txtKp, txtKd, txtTimer, txtT1, txtT2, txtT3, txtT4, txtT5, txtT6, txtT7, txtT8, txtT9, txtT10;
+    @SuppressLint("StaticFieldLeak")
     public static EditText editThre, editVmax, editVmin, editKp, editKd, editTimer, editT1, editT2, editT3, editT4, editT5, editT6, editT7, editT8, editT9, editT10;
-    private Button btndelete, btnsave;
-    private ListView listaDados;
+    private Button btnDelete, btnSave;
+    private ListView listData;
+
 
     public static TelaDados newInstance(int index) {
         TelaDados fragment = new TelaDados();
@@ -62,18 +64,19 @@ public class TelaDados extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.tela_dados, container, false);
+        root = inflater.inflate(R.layout.tela_database, container, false);
         reference_elements();
         setText_elements();
-
-        btnsave.setOnClickListener(new View.OnClickListener() {
+        btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { onCreateDialogforInsert();
+            public void onClick(View v) {
+                onCreateDialogForDelete();
             }
         });
-        btndelete.setOnClickListener(new View.OnClickListener() {
+        btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { onCreateDialogforDelete();
+            public void onClick(View v) {
+                onCreateDialogForDelete();
             }
         });
         db();
@@ -95,13 +98,36 @@ public class TelaDados extends Fragment {
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(getContext(),
                 R.layout.lista_dados, cursor, fields, ids, 0);
 
-        listaDados.setAdapter(adapter);
+        listData.setAdapter(adapter);
+
+        listData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @SuppressLint("ResourceType")
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                editThre.setText(((TextView) view.findViewById(R.id.tvThre)).getText().toString());
+                editVmax.setText(((TextView) view.findViewById(R.id.tvVmax)).getText().toString());
+                editVmin.setText(((TextView) view.findViewById(R.id.tvVmin)).getText().toString());
+                editKp.setText(((TextView) view.findViewById(R.id.tvKp)).getText().toString());
+                editKd.setText(((TextView) view.findViewById(R.id.tvKd)).getText().toString());
+                editTimer.setText(((TextView) view.findViewById(R.id.tvTimer)).getText().toString());
+                editT1.setText(((TextView) view.findViewById(R.id.tvT1)).getText().toString());
+                editT2.setText(((TextView) view.findViewById(R.id.tvT2)).getText().toString());
+                editT3.setText(((TextView) view.findViewById(R.id.tvT3)).getText().toString());
+                editT4.setText(((TextView) view.findViewById(R.id.tvT4)).getText().toString());
+                editT5.setText(((TextView) view.findViewById(R.id.tvT5)).getText().toString());
+                editT6.setText(((TextView) view.findViewById(R.id.tvT6)).getText().toString());
+                editT7.setText(((TextView) view.findViewById(R.id.tvT7)).getText().toString());
+                editT8.setText(((TextView) view.findViewById(R.id.tvT8)).getText().toString());
+                editT9.setText(((TextView) view.findViewById(R.id.tvT9)).getText().toString());
+                editT10.setText(((TextView) view.findViewById(R.id.tvT10)).getText().toString());
+            }
+        });
 
 
     }
+
     public void saveInDb(String info) {
         DAL dal = new DAL(getContext());
-        String dado = info;
         int thre = Integer.valueOf(editThre.getText().toString());
         int vmax = Integer.valueOf(editVmax.getText().toString());
         int vmin = Integer.valueOf(editVmin.getText().toString());
@@ -124,15 +150,15 @@ public class TelaDados extends Fragment {
         int d4 = 4;
 
 
-        if (dal.insert(dado, thre, vmax, vmin, kp, kd, timer, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, d1, d2, d3, d4)) {
+        if (dal.insert(info, thre, vmax, vmin, kp, kd, timer, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, d1, d2, d3, d4)) {
             Toast.makeText(getContext(), "Registro Inserido com sucesso!", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(getContext(), "Erro ao inserir registro!", Toast.LENGTH_LONG).show();
         }
     }
+
     @SuppressLint("CutPasteId")
     public void reference_elements() {
-        tt = root.findViewById(R.id.textView5);
         editThre = root.findViewById(R.id.txtThre);
         editVmax = root.findViewById(R.id.txtVmax);
         editVmin = root.findViewById(R.id.txtVmin);
@@ -144,15 +170,16 @@ public class TelaDados extends Fragment {
         editT3 = root.findViewById(R.id.txtT3);
         editT4 = root.findViewById(R.id.txtT4);
         editT5 = root.findViewById(R.id.txtT5);
-        editT6 = root.findViewById(R.id.txtT7);
-        editT7 = root.findViewById(R.id.txtT8);
+        editT6 = root.findViewById(R.id.txtT6);
+        editT7 = root.findViewById(R.id.txtT7);
         editT8 = root.findViewById(R.id.txtT8);
         editT9 = root.findViewById(R.id.txtT9);
         editT10 = root.findViewById(R.id.txtT10);
-        btndelete = root.findViewById(R.id.buttonDelete);
-        btnsave = root.findViewById(R.id.buttonSave);
-        listaDados = root.findViewById(R.id.listViewDados);
+        btnDelete = root.findViewById(R.id.buttonDelete);
+        btnSave = root.findViewById(R.id.buttonSave);
+        listData = root.findViewById(R.id.listViewDados);
     }
+
     @SuppressLint("SetTextI18n")
     public void setText_elements() {
         editThre.setText("100");
@@ -171,10 +198,11 @@ public class TelaDados extends Fragment {
         editT8.setText("");
         editT9.setText("");
         editT10.setText("");
-        btnsave.setText("Salvar");
-        btndelete.setText("Deletar");
+        btnSave.setText("Salvar");
+        btnDelete.setText("Deletar");
     }
-    public void onCreateDialogforInsert() {
+
+    public void onCreateDialogForInsert() {
         final EditText edt = new EditText(getContext());
         edt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
         AlertDialog.Builder altBx = new AlertDialog.Builder(getContext());
@@ -224,12 +252,13 @@ public class TelaDados extends Fragment {
 //                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
 //                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
-    public void onCreateDialogforDelete() {
+
+    public void onCreateDialogForDelete() {
         final EditText edt = new EditText(getContext());
         edt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
         AlertDialog.Builder altBx = new AlertDialog.Builder(getContext());
         altBx.setTitle("Banco de dados");
-        altBx.setMessage("Indique o Id dos dados que deseja excluir");
+        altBx.setMessage("Indique o ID dos dados que deseja excluir");
         altBx.setView(edt);
 
         altBx.setPositiveButton("Excluir", new DialogInterface.OnClickListener() {
@@ -239,6 +268,7 @@ public class TelaDados extends Fragment {
                     DAL dal = new DAL(getContext());
                     dal.delete(id);
                 } else {
+                    Toast.makeText(getContext(), "Você esqueceu de inserir o ID", Toast.LENGTH_SHORT).show();
                 }
             }
         });

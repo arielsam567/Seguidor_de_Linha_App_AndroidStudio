@@ -1,24 +1,9 @@
 package com.example.seguidor_de_linha;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.UUID;
 
 public class TesteTela extends AppCompatActivity {
 
@@ -28,7 +13,7 @@ public class TesteTela extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_dialogone);
+        setContentView(R.layout.layout_alert_dialog);
         ttt = findViewById(R.id.informacao);
     }
 
