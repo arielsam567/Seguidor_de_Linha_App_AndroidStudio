@@ -31,6 +31,8 @@ import com.example.seguidor_de_linha.R;
  */
 public class TelaDados extends Fragment {
 
+
+
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private View root;
@@ -48,7 +50,6 @@ public class TelaDados extends Fragment {
         fragment.setArguments(bundle);
         return fragment;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,11 +60,8 @@ public class TelaDados extends Fragment {
         }
         pageViewModel.setIndex(index);
     }
-
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.tela_database, container, false);
         reference_elements();
         setText_elements();
@@ -125,7 +123,6 @@ public class TelaDados extends Fragment {
 
 
     }
-
     public void saveInDb(String info) {
         DAL dal = new DAL(getContext());
         int thre = Integer.valueOf(editThre.getText().toString());
@@ -156,7 +153,6 @@ public class TelaDados extends Fragment {
             Toast.makeText(getContext(), "Erro ao inserir registro!", Toast.LENGTH_LONG).show();
         }
     }
-
     @SuppressLint("CutPasteId")
     public void reference_elements() {
         editThre = root.findViewById(R.id.txtThre);
@@ -179,29 +175,27 @@ public class TelaDados extends Fragment {
         btnSave = root.findViewById(R.id.buttonSave);
         listData = root.findViewById(R.id.listViewDados);
     }
-
     @SuppressLint("SetTextI18n")
     public void setText_elements() {
-        editThre.setText("100");
-        editVmax.setText("100");
-        editVmin.setText("100");
-        editKp.setText("55");
-        editKd.setText("25");
-        editTimer.setText("13000");
-        editT1.setText("");
-        editT2.setText("");
-        editT3.setText("");
-        editT4.setText("");
-        editT5.setText("");
-        editT6.setText("");
-        editT7.setText("");
-        editT8.setText("");
-        editT9.setText("");
-        editT10.setText("");
+//        editThre.setText("100");
+//        editVmax.setText("100");
+//        editVmin.setText("100");
+//        editKp.setText("55");
+//        editKd.setText("25");
+//        editTimer.setText("13000");
+//        editT1.setText("");
+//        editT2.setText("");
+//        editT3.setText("");
+//        editT4.setText("");
+//        editT5.setText("");
+//        editT6.setText("");
+//        editT7.setText("");
+//        editT8.setText("");
+//        editT9.setText("");
+//        editT10.setText("");
         btnSave.setText("Salvar");
         btnDelete.setText("Deletar");
     }
-
     public void onCreateDialogForInsert() {
         final EditText edt = new EditText(getContext());
         edt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
@@ -252,7 +246,6 @@ public class TelaDados extends Fragment {
 //                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
 //                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
-
     public void onCreateDialogForDelete() {
         final EditText edt = new EditText(getContext());
         edt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
@@ -304,4 +297,7 @@ public class TelaDados extends Fragment {
 //                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
 //                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
+
+
+
 }
