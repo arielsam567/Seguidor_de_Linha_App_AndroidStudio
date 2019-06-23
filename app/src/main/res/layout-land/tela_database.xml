@@ -8,14 +8,12 @@
     <ScrollView
         android:id="@+id/valores"
         android:layout_width="390dp"
-        android:layout_height="325dp"
+        android:layout_height="372dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_weight="1"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -352,16 +350,16 @@
 
     <ListView
         android:id="@+id/listViewDados"
-        android:layout_width="395dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginStart="3dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginBottom="60dp"
         android:background="#4CAF50"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/valores"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/valores" />
+        app:layout_constraintHorizontal_bias="0.965"
+        app:layout_constraintStart_toEndOf="@+id/valores"
+        app:layout_constraintTop_toTopOf="@+id/valores" />
 
 </android.support.constraint.ConstraintLayout>

@@ -2,52 +2,15 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/trocatroca"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/read"
+        android:id="@+id/start"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/button_read"
-        android:shadowColor="#1261C9"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:shadowRadius="5"
-        android:text="Button"
-        android:textColor="#FFFFFF"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/readdata"
-        app:layout_constraintTop_toBottomOf="@+id/readdata" />
-
-    <Button
-        android:id="@+id/readdata"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/button_stop"
-        android:shadowColor="#FF0F0F"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:shadowRadius="5"
-        android:text="parar"
-        android:textColor="#FFFFFF"
-        android:textSize="23sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/sett"
-        app:layout_constraintTop_toBottomOf="@+id/sett" />
-
-    <Button
-        android:id="@+id/sett"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="550dp"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/button_start"
         android:shadowColor="#18CC24"
         android:shadowDx="0"
@@ -56,17 +19,89 @@
         android:text="iniciar"
         android:textColor="#FFFFFF"
         android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/sett"
+        app:layout_constraintEnd_toEndOf="@+id/sett"
+        app:layout_constraintStart_toStartOf="@+id/sett" />
+
+    <Button
+        android:id="@+id/stop"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_stop"
+        android:shadowColor="#FF0F0F"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:text="parar"
+        android:textColor="#FFFFFF"
+        android:textSize="23sp"
+        app:layout_constraintBottom_toTopOf="@+id/readdata"
+        app:layout_constraintEnd_toEndOf="@+id/readdata"
+        app:layout_constraintStart_toStartOf="@+id/readdata" />
+
+    <Button
+        android:id="@+id/read"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_read"
+        android:shadowColor="#1261C9"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:text="Ler sensores"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/right" />
+
+    <Button
+        android:id="@+id/readdata"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_sett"
+        android:shadowColor="#B5B5B5"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:text="parar"
+        android:textColor="#FFFFFF"
+        android:textSize="23sp"
+        app:layout_constraintBottom_toTopOf="@+id/read"
+        app:layout_constraintEnd_toEndOf="@+id/read"
+        app:layout_constraintStart_toStartOf="@+id/read" />
+
+    <Button
+        android:id="@+id/sett"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_sett"
+        android:shadowColor="#B5B5B5"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:text="settar"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/stop"
+        app:layout_constraintEnd_toEndOf="@+id/stop"
+        app:layout_constraintStart_toStartOf="@+id/stop" />
 
     <Button
         android:id="@+id/up"
-
-
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/button_up"
         android:shadowColor="#B5B5B5"
         android:shadowDx="0"
@@ -75,12 +110,12 @@
         android:text="↑"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
-
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.107"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonconnect"
+        app:layout_constraintVertical_bias="0.110000014" />
 
     <Button
         android:id="@+id/donw"
@@ -126,7 +161,6 @@
 
     <Button
         android:id="@+id/right"
-
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="5dp"
@@ -146,7 +180,6 @@
 
     <Button
         android:id="@+id/buttonreconnect"
-
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
@@ -167,19 +200,34 @@
         android:id="@+id/buttonconnect"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/button_connect"
         android:onClick="connectButtonPressed"
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="5"
-
         android:text="Conectar"
         android:textColor="#18CC24"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/buttonreconnect" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtStatus"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="#4CAF50"
+        android:gravity="center"
+        android:textColor="#070606"
+        app:layout_constraintBottom_toBottomOf="@+id/read"
+        app:layout_constraintEnd_toStartOf="@+id/left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonconnect" />
 
 </android.support.constraint.ConstraintLayout>

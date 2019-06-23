@@ -23,15 +23,12 @@ public class Device extends AppCompatActivity {
     ListView devicelist;
 
     private BluetoothAdapter myBluetooth = null;
-    private Set<BluetoothDevice> pairedDevices;
     public static String EXTRA_ADDRESS = "device_address";
-    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device);
-        intent = getIntent();
 
         btnPaired = findViewById(R.id.button);
         devicelist = findViewById(R.id.listView);
@@ -54,11 +51,11 @@ public class Device extends AppCompatActivity {
     }
 
     private void pairedDevicesList () {
-        pairedDevices = myBluetooth.getBondedDevices();
+        Set<BluetoothDevice> pairedDevices = myBluetooth.getBondedDevices();
         ArrayList list = new ArrayList();
 
         if ( pairedDevices.size() > 0 ) {
-            for ( BluetoothDevice bt : pairedDevices ) {
+            for ( BluetoothDevice bt : pairedDevices) {
                 list.add(bt.getName().toString() + "\n" + bt.getAddress().toString());
             }
         } else {
@@ -80,9 +77,6 @@ public class Device extends AppCompatActivity {
             i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             i.putExtra(EXTRA_ADDRESS, address);
             startActivityForResult(i, 2);
-            //startActivity(i);
-            //(MainActivity.class , i);
-
             finish();
         }
     };

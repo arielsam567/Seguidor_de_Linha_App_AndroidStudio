@@ -70,7 +70,7 @@ public class TelaDados extends Fragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onCreateDialogForDelete();
+                onCreateDialogForInsert();
             }
         });
         btnDelete.setOnClickListener(new View.OnClickListener() {
