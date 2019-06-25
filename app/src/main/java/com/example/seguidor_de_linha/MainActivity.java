@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String T8 =      "t8";
     private static final String T9 =      "t9";
     private static final String T10 =     "t10";
-    private String t;
+
 
 
     @Override
@@ -69,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        t = "3";
+
         editVmax.setText(savedInstanceState.getString(VMAX));
-        editThre.setText(t);
+        editThre.setText(savedInstanceState.getString(THRE));
         editVmin.setText(savedInstanceState.getString(MIN));
         editKp.setText(savedInstanceState.getString(KP));
         editKd.setText(savedInstanceState.getString(KD));
@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
         editT9.setText(savedInstanceState.getString(T9));
         editT10.setText(savedInstanceState.getString(T10));
     }
-
 
 
 

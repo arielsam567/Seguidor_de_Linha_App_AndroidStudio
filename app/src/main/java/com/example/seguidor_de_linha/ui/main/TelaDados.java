@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,6 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.example.seguidor_de_linha.Db.CreateDatabase;
 import com.example.seguidor_de_linha.Db.DAL;
@@ -32,15 +32,16 @@ import com.example.seguidor_de_linha.R;
 public class TelaDados extends Fragment {
 
 
-
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private View root;
     //private TextView txtThre, txtVmax, txtVmin, txtKp, txtKd, txtTimer, txtT1, txtT2, txtT3, txtT4, txtT5, txtT6, txtT7, txtT8, txtT9, txtT10;
     @SuppressLint("StaticFieldLeak")
     public static EditText editThre, editVmax, editVmin, editKp, editKd, editTimer, editT1, editT2, editT3, editT4, editT5, editT6, editT7, editT8, editT9, editT10;
-    private Button btnDelete, btnSave;
+    private Button  btnSave;
     private ListView listData;
+    private SimpleCursorAdapter adapter;
+    private DAL dal;
 
 
     public static TelaDados newInstance(int index) {
@@ -50,6 +51,7 @@ public class TelaDados extends Fragment {
         fragment.setArguments(bundle);
         return fragment;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,29 +62,24 @@ public class TelaDados extends Fragment {
         }
         pageViewModel.setIndex(index);
     }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.tela_database, container, false);
-        reference_elements();
-        setText_elements();
+        referenceElements();
+        setTextElements();
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onCreateDialogForInsert();
             }
         });
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onCreateDialogForDelete();
-            }
-        });
-        db();
+        Database();
         return root;
     }
 
-    public void db() {
-        DAL dal = new DAL(getContext());
+    public void Database() {
+        dal = new DAL(getContext());
         Cursor cursor = dal.loadAll();
         String[] fields = new String[]{CreateDatabase.INFORMACAO, CreateDatabase.ID, CreateDatabase.THRESHOLD, CreateDatabase.VMAX,
                 CreateDatabase.VMIN, CreateDatabase.KP, CreateDatabase.KD
@@ -93,7 +90,7 @@ public class TelaDados extends Fragment {
         int[] ids = {R.id.tvInfo, R.id.tvId, R.id.tvThre, R.id.tvVmax, R.id.tvVmin, R.id.tvKp, R.id.tvKd, R.id.tvTimer, R.id.tvT1, R.id.tvT2, R.id.tvT3
                 , R.id.tvT4, R.id.tvT5, R.id.tvT6, R.id.tvT7, R.id.tvT8, R.id.tvT9, R.id.tvT10, R.id.tvD1, R.id.tvD2, R.id.tvD3, R.id.tvD4};
 
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(getContext(),
+        adapter = new SimpleCursorAdapter(getContext(),
                 R.layout.lista_dados, cursor, fields, ids, 0);
 
         listData.setAdapter(adapter);
@@ -102,27 +99,11 @@ public class TelaDados extends Fragment {
             @SuppressLint("ResourceType")
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                editThre.setText(((TextView) view.findViewById(R.id.tvThre)).getText().toString());
-                editVmax.setText(((TextView) view.findViewById(R.id.tvVmax)).getText().toString());
-                editVmin.setText(((TextView) view.findViewById(R.id.tvVmin)).getText().toString());
-                editKp.setText(((TextView) view.findViewById(R.id.tvKp)).getText().toString());
-                editKd.setText(((TextView) view.findViewById(R.id.tvKd)).getText().toString());
-                editTimer.setText(((TextView) view.findViewById(R.id.tvTimer)).getText().toString());
-                editT1.setText(((TextView) view.findViewById(R.id.tvT1)).getText().toString());
-                editT2.setText(((TextView) view.findViewById(R.id.tvT2)).getText().toString());
-                editT3.setText(((TextView) view.findViewById(R.id.tvT3)).getText().toString());
-                editT4.setText(((TextView) view.findViewById(R.id.tvT4)).getText().toString());
-                editT5.setText(((TextView) view.findViewById(R.id.tvT5)).getText().toString());
-                editT6.setText(((TextView) view.findViewById(R.id.tvT6)).getText().toString());
-                editT7.setText(((TextView) view.findViewById(R.id.tvT7)).getText().toString());
-                editT8.setText(((TextView) view.findViewById(R.id.tvT8)).getText().toString());
-                editT9.setText(((TextView) view.findViewById(R.id.tvT9)).getText().toString());
-                editT10.setText(((TextView) view.findViewById(R.id.tvT10)).getText().toString());
+                onCreateDialogToClick(view);
             }
         });
-
-
     }
+
     public void saveInDb(String info) {
         DAL dal = new DAL(getContext());
         int thre = Integer.valueOf(editThre.getText().toString());
@@ -153,8 +134,37 @@ public class TelaDados extends Fragment {
             Toast.makeText(getContext(), "Erro ao inserir registro!", Toast.LENGTH_LONG).show();
         }
     }
+
+    public void getDados(View view) {
+        editThre.setText(((TextView) view.findViewById(R.id.tvThre)).getText().toString());
+        editVmax.setText(((TextView) view.findViewById(R.id.tvVmax)).getText().toString());
+        editVmin.setText(((TextView) view.findViewById(R.id.tvVmin)).getText().toString());
+        editKp.setText(((TextView) view.findViewById(R.id.tvKp)).getText().toString());
+        editKd.setText(((TextView) view.findViewById(R.id.tvKd)).getText().toString());
+        editTimer.setText(((TextView) view.findViewById(R.id.tvTimer)).getText().toString());
+        editT1.setText(((TextView) view.findViewById(R.id.tvT1)).getText().toString());
+        editT2.setText(((TextView) view.findViewById(R.id.tvT2)).getText().toString());
+        editT3.setText(((TextView) view.findViewById(R.id.tvT3)).getText().toString());
+        editT4.setText(((TextView) view.findViewById(R.id.tvT4)).getText().toString());
+        editT5.setText(((TextView) view.findViewById(R.id.tvT5)).getText().toString());
+        editT6.setText(((TextView) view.findViewById(R.id.tvT6)).getText().toString());
+        editT7.setText(((TextView) view.findViewById(R.id.tvT7)).getText().toString());
+        editT8.setText(((TextView) view.findViewById(R.id.tvT8)).getText().toString());
+        editT9.setText(((TextView) view.findViewById(R.id.tvT9)).getText().toString());
+        editT10.setText(((TextView) view.findViewById(R.id.tvT10)).getText().toString());
+    }
+
+    public void deleteFromDb(int id) {
+        DAL dal = new DAL(getContext());
+        if (dal.delete(id)) {
+            Toast.makeText(getContext(), "Exclusão com sucesso", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "Erro ao excluir do Banco de dados", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @SuppressLint("CutPasteId")
-    public void reference_elements() {
+    public void referenceElements() {
         editThre = root.findViewById(R.id.txtThre);
         editVmax = root.findViewById(R.id.txtVmax);
         editVmin = root.findViewById(R.id.txtVmin);
@@ -171,12 +181,12 @@ public class TelaDados extends Fragment {
         editT8 = root.findViewById(R.id.txtT8);
         editT9 = root.findViewById(R.id.txtT9);
         editT10 = root.findViewById(R.id.txtT10);
-        btnDelete = root.findViewById(R.id.buttonDelete);
         btnSave = root.findViewById(R.id.buttonSave);
         listData = root.findViewById(R.id.listViewDados);
     }
+
     @SuppressLint("SetTextI18n")
-    public void setText_elements() {
+    public void setTextElements() {
 //        editThre.setText("100");
 //        editVmax.setText("100");
 //        editVmin.setText("100");
@@ -194,8 +204,8 @@ public class TelaDados extends Fragment {
 //        editT9.setText("");
 //        editT10.setText("");
         btnSave.setText("Salvar");
-        btnDelete.setText("Deletar");
     }
+
     public void onCreateDialogForInsert() {
         final EditText edt = new EditText(getContext());
         edt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
@@ -207,11 +217,12 @@ public class TelaDados extends Fragment {
         altBx.setPositiveButton("Adicionar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 if (edt.getText().toString().length() != 0) {
-                    String teste = edt.getText().toString();
-                    saveInDb(teste);
+                    String info = edt.getText().toString();
+                    saveInDb(info);
                 } else {
                     saveInDb("");
                 }
+                adapter.changeCursor(dal.loadAll());
             }
         });
         altBx.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -246,9 +257,43 @@ public class TelaDados extends Fragment {
 //                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
 //                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
+
+    public void onCreateDialogToClick(final View view) {
+
+        AlertDialog.Builder altBx = new AlertDialog.Builder(getContext());
+        altBx.setTitle("Banco de dados");
+        altBx.setMessage("O que deseja fazer?");
+
+
+        altBx.setPositiveButton("Excluir dados", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                int id = Integer.parseInt((((TextView) view.findViewById(R.id.tvId)).getText().toString()));
+                deleteFromDb(id);
+
+                //adapter.notifyDataSetChanged();
+                adapter.changeCursor(dal.loadAll());
+
+            }
+        });
+        altBx.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        altBx.setNegativeButton("Acessar dados", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                getDados(view);
+            }
+        });
+        altBx.show();
+
+    }
+
     public void onCreateDialogForDelete() {
         final EditText edt = new EditText(getContext());
-        edt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
+        edt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)}); // define tamanho maximo de 10
+        edt.setInputType(InputType.TYPE_CLASS_NUMBER); // define aceitar apenas numero
         AlertDialog.Builder altBx = new AlertDialog.Builder(getContext());
         altBx.setTitle("Banco de dados");
         altBx.setMessage("Indique o ID dos dados que deseja excluir");
@@ -258,10 +303,10 @@ public class TelaDados extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
                 if (edt.getText().toString().length() != 0) {
                     int id = Integer.parseInt(edt.getText().toString());
-                    DAL dal = new DAL(getContext());
-                    dal.delete(id);
+                    deleteFromDb(id);
                 } else {
-                    Toast.makeText(getContext(), "Você esqueceu de inserir o ID", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Você não inseriu o ID", Toast.LENGTH_SHORT).show();
+                    adapter.notifyDataSetChanged();
                 }
             }
         });
@@ -297,6 +342,9 @@ public class TelaDados extends Fragment {
 //                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
 //                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
+
+
+
 
 
 

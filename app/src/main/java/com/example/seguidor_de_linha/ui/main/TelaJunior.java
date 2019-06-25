@@ -141,7 +141,6 @@ public class TelaJunior extends Fragment {
             }
         });
 
-
         return root;
     }
 
@@ -168,7 +167,7 @@ public class TelaJunior extends Fragment {
             // Check if there are bytes available
             if (inStream.available() > 0) {
                 // Read bytes into a buffer
-                byte[] inBuffer = new byte[4096];
+                byte[] inBuffer = new byte[1024];
                 int bytesRead = inStream.read(inBuffer);
                 // Convert read bytes into a string
                 s = new String(inBuffer, StandardCharsets.US_ASCII);
@@ -275,8 +274,6 @@ public class TelaJunior extends Fragment {
         //sett
         //readdata   x
         //sensor     y
-
-
         btnUp.setOnTouchListener(new btnListener("8"));
         btnRight.setOnTouchListener(new btnListener("6"));
         btnDown.setOnTouchListener(new btnListener("2"));
@@ -286,6 +283,7 @@ public class TelaJunior extends Fragment {
         btnStop.setOnTouchListener(new btnListener("s"));
         btnReadData.setOnTouchListener(new btnListener("x"));
         btnReadSensors.setOnTouchListener(new btnListener("y"));
+
 
 
     }

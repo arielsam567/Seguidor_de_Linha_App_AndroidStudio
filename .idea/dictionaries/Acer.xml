@@ -13,15 +13,22 @@
       <w>deseja</w>
       <w>editview</w>
       <w>endereco</w>
+      <w>erro</w>
+      <w>esqueceu</w>
+      <w>excluir</w>
+      <w>exclusão</w>
       <w>informação</w>
+      <w>inseriu</w>
       <w>mensagem</w>
       <w>readdata</w>
       <w>receber</w>
       <w>settar</w>
+      <w>sucesso</w>
       <w>tela</w>
       <w>thre</w>
       <w>vmax</w>
       <w>vmin</w>
+      <w>você</w>
     </words>
   </dictionary>
 </component>

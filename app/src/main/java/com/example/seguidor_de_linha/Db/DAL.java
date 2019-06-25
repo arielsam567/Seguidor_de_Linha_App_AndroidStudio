@@ -102,7 +102,7 @@ public class DAL {
         db = database.getReadableDatabase();
         // SELECT _id, title FROM book
         // String sql = "SELECT _id, title FROM book";
-        //cursor = db.rawQuery(sql, null);
+        //cursor = Database.rawQuery(sql, null);
         cursor = db.query(CreateDatabase.TABLE, fields, null,
                 null, null, null,
                 null, null);
@@ -127,7 +127,7 @@ public class DAL {
         long result;
         String where = "_id = ?";
         String[] args = { String.valueOf(id) };
-        db = database.getWritableDatabase();
+        Database = database.getWritableDatabase();
        values = new ContentValues();
         values.put(CreateDatabase.NOME, nome);
         values.put(CreateDatabase.IDADE, idade);
@@ -136,8 +136,8 @@ public class DAL {
         values.put(CreateDatabase.AST, ast);
         values.put(CreateDatabase.LDH, ldh);
         values.put(CreateDatabase.MORTALIDADE, mortalidade);
-        result = db.update(CreateDatabase.TABLE, values, where, args);
-        db.close();
+        result = Database.update(CreateDatabase.TABLE, values, where, args);
+        Database.close();
         if (result == -1) {
             Log.e(TAG, "insert: Erro atualizando registro");
             return false;
