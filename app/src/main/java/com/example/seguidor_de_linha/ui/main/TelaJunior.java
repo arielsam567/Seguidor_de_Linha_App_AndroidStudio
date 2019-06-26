@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Message;
@@ -57,7 +58,7 @@ public class TelaJunior extends Fragment {
     InputStream inStream; //to receive data
     String mAddress = ""; //bluetooth address
     BluetoothAdapter myBluetooth = null;
-    BluetoothSocket btSocket = null;
+    BluetoothSocket btSocket = null; //to date exchange
     private boolean isBtConnected = false;
     static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     private static final String ADDRESS = "Address";
@@ -111,6 +112,7 @@ public class TelaJunior extends Fragment {
                     getActivity().finish();
                 } else {
                     Disconnect();
+                    btnConnect.setTextColor(Color.GREEN);
                     btnConnect.setText("Conectar");
                     isBtConnected = false;
                 }
@@ -119,7 +121,7 @@ public class TelaJunior extends Fragment {
         btnSett.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendData();
+                sendDataToArduino();
             }
         });
         btnReadSensors.setOnClickListener(new View.OnClickListener() {
@@ -127,7 +129,7 @@ public class TelaJunior extends Fragment {
             public void onClick(View v) {
                 txtStatus.setText("");
                 if (isBtConnected) {
-                    txtStatus.setText(receiveData());
+                    receiveData();
                 }
             }
         });
@@ -136,27 +138,24 @@ public class TelaJunior extends Fragment {
             public void onClick(View v) {
                 txtStatus.setText("");
                 if (isBtConnected) {
-                    txtStatus.setText(receiveData());
+                    receiveData();
                 }
             }
         });
-
         return root;
     }
 
     /////////////////////////////////////////////////
     //Bluetooth
     private void sendSignal(String s) {
-        if (btSocket != null) {
-            try {
-                btSocket.getOutputStream().write(s.getBytes());
-            } catch (IOException e) {
-                msg("Error");
-            }
+        try {
+            btSocket.getOutputStream().write(s.getBytes());
+        } catch (IOException e) {
+            msgRed("Error");
         }
     }
 
-    private String receiveData() {
+    private void receiveData() {
         try {
             inStream = btSocket.getInputStream();
         } catch (IOException e) {
@@ -172,22 +171,23 @@ public class TelaJunior extends Fragment {
                 // Convert read bytes into a string
                 s = new String(inBuffer, StandardCharsets.US_ASCII);
                 s = s.substring(0, bytesRead);
+                txtStatus.setText(s);
                 Log.d(TAG, "receiveData: " + s);
             }
         } catch (Exception e) {
             Log.e(TAG, "Read failed!", e);
         }
-        return s;
     }
 
     @SuppressLint("SetTextI18n")
     private void Disconnect() {
         if (btSocket != null) {
             try {
+                btnConnect.setTextColor(Color.GREEN);
                 btnConnect.setText("Conectar");
                 btSocket.close();
             } catch (IOException e) {
-                msg("Erro ao desconectar");
+                msgRed("Erro ao desconectar");
             }
         }
     }
@@ -223,9 +223,10 @@ public class TelaJunior extends Fragment {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
             if (!ConnectSuccess) {
-                msg("Conecção falhou. Tente novamente.");
+                msgRed("Conecção falhou. Tente novamente.");
             } else {
-                msg("Connected");
+                msgGreen("Connected");
+                btnConnect.setTextColor(Color.RED);
                 btnConnect.setText("Desconectar");
                 isBtConnected = true;
             }
@@ -285,7 +286,6 @@ public class TelaJunior extends Fragment {
         btnReadSensors.setOnTouchListener(new btnListener("y"));
 
 
-
     }
     //////////////////////////////////////////////
 
@@ -321,14 +321,9 @@ public class TelaJunior extends Fragment {
     }
     //////////////////////////////////////////////////////////////////
 
-    private void msg(String s) {
-        Toast.makeText(getContext(), s, Toast.LENGTH_LONG).show();
-    }
 
-
-    ////////////////////////////////////
-    //Pegando dados da tela ao lado
-    public void sendData() {
+    ///////////////////////////////////
+    public void sendDataToArduino() {
         //editT9,editT10;
         String mensagem =
                 ";i:" + editKp.getText().toString()
@@ -355,11 +350,25 @@ public class TelaJunior extends Fragment {
                     btSocket.getOutputStream().write(worlds[i]);
                 }
             } catch (IOException e) {
-                msg("Error");
+                msgRed("Erro ao settar dados");
             }
         }
     }
     /////////////////////////////////////
+
+    public void msgRed(final String mensagem) {
+        Toast toast = Toast.makeText(getContext(), mensagem, Toast.LENGTH_SHORT);
+        TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+        v.setTextColor(Color.RED);
+        toast.show();
+    }
+
+    public void msgGreen(final String mensagem) {
+        Toast toast = Toast.makeText(getContext(), mensagem, Toast.LENGTH_SHORT);
+        TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+        v.setTextColor(Color.GREEN);
+        toast.show();
+    }
 }
 
 
