@@ -33,7 +33,6 @@ public class TelaDados extends Fragment {
 
 
     private static final String ARG_SECTION_NUMBER = "section_number";
-
     private View root;
     //private TextView txtThre, txtVmax, txtVmin, txtKp, txtKd, txtTimer, txtT1, txtT2, txtT3, txtT4, txtT5, txtT6, txtT7, txtT8, txtT9, txtT10;
     @SuppressLint("StaticFieldLeak")
@@ -99,11 +98,18 @@ public class TelaDados extends Fragment {
             @SuppressLint("ResourceType")
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                getDados(view);
+            }
+        });
+        listData.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
+            @SuppressLint("ResourceType")
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 onCreateDialogToClick(view);
+                return false;
             }
         });
     }
-
     public void saveInDb(String info) {
         DAL dal = new DAL(getContext());
         int thre = Integer.valueOf(editThre.getText().toString());
@@ -134,7 +140,6 @@ public class TelaDados extends Fragment {
             Toast.makeText(getContext(), "Erro ao inserir registro!", Toast.LENGTH_LONG).show();
         }
     }
-
     public void getDados(View view) {
         editThre.setText(((TextView) view.findViewById(R.id.tvThre)).getText().toString());
         editVmax.setText(((TextView) view.findViewById(R.id.tvVmax)).getText().toString());
@@ -153,7 +158,6 @@ public class TelaDados extends Fragment {
         editT9.setText(((TextView) view.findViewById(R.id.tvT9)).getText().toString());
         editT10.setText(((TextView) view.findViewById(R.id.tvT10)).getText().toString());
     }
-
     public void deleteFromDb(int id) {
         DAL dal = new DAL(getContext());
         if (dal.delete(id)) {
@@ -162,7 +166,6 @@ public class TelaDados extends Fragment {
             Toast.makeText(getContext(), "Erro ao excluir do Banco de dados", Toast.LENGTH_SHORT).show();
         }
     }
-
     @SuppressLint("CutPasteId")
     public void referenceElements() {
         editThre = root.findViewById(R.id.txtThre);
@@ -184,7 +187,6 @@ public class TelaDados extends Fragment {
         btnSave = root.findViewById(R.id.buttonSave);
         listData = root.findViewById(R.id.listViewDados);
     }
-
     @SuppressLint("SetTextI18n")
     public void setTextElements() {
 //        editThre.setText("100");
@@ -205,7 +207,6 @@ public class TelaDados extends Fragment {
 //        editT10.setText("");
         btnSave.setText("Salvar");
     }
-
     public void onCreateDialogForInsert() {
         final EditText edt = new EditText(getContext());
         edt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
@@ -257,57 +258,16 @@ public class TelaDados extends Fragment {
 //                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
 //                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
-
     public void onCreateDialogToClick(final View view) {
-
         AlertDialog.Builder altBx = new AlertDialog.Builder(getContext());
         altBx.setTitle("Banco de dados");
-        altBx.setMessage("O que deseja fazer?");
-
-
+        altBx.setMessage("O que deseja fazer\n" + "Informação do campo : " +((TextView) view.findViewById(R.id.tvInfo)).getText().toString());
         altBx.setPositiveButton("Excluir dados", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 int id = Integer.parseInt((((TextView) view.findViewById(R.id.tvId)).getText().toString()));
                 deleteFromDb(id);
-
                 //adapter.notifyDataSetChanged();
                 adapter.changeCursor(dal.loadAll());
-
-            }
-        });
-        altBx.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-
-        altBx.setNegativeButton("Acessar dados", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                getDados(view);
-            }
-        });
-        altBx.show();
-
-    }
-
-    public void onCreateDialogForDelete() {
-        final EditText edt = new EditText(getContext());
-        edt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)}); // define tamanho maximo de 10
-        edt.setInputType(InputType.TYPE_CLASS_NUMBER); // define aceitar apenas numero
-        AlertDialog.Builder altBx = new AlertDialog.Builder(getContext());
-        altBx.setTitle("Banco de dados");
-        altBx.setMessage("Indique o ID dos dados que deseja excluir");
-        altBx.setView(edt);
-
-        altBx.setPositiveButton("Excluir", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                if (edt.getText().toString().length() != 0) {
-                    int id = Integer.parseInt(edt.getText().toString());
-                    deleteFromDb(id);
-                } else {
-                    Toast.makeText(getContext(), "Você não inseriu o ID", Toast.LENGTH_SHORT).show();
-                    adapter.notifyDataSetChanged();
-                }
             }
         });
         altBx.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -315,37 +275,5 @@ public class TelaDados extends Fragment {
             }
         });
         altBx.show();
-//                AlertDialog.Builder mensagem = new AlertDialog.Builder(getContext());
-//                mensagem.setTitle("Adicionando ao Banco de Dados");
-//                mensagem.setMessage("Deseja adicionar alguma informação?");
-//                // add editview
-//                final EditText input = new EditText(getContext());
-//                mensagem.setView(input);
-//                mensagem.setPositiveButton("Adicionar", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        try {
-//                            String info = String.valueOf(input.getText());
-//                            saveInDb(info);
-//                        } catch (Exception e) {
-//                            saveInDb(" ");
-//                        }
-//                    }
-//                });
-//                mensagem.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//
-//                    }
-//                });
-//
-//                mensagem.show();
-//                // FORÇA O TECLADO APARECER AO ABRIR O ALERT
-//                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-//                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
-
-
-
-
-
-
 }
